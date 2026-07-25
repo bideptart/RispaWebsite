@@ -1,3 +1,5 @@
+import AppointmentCardWidget from './AppointmentCardWidget'
+
 function HeroAnimation() {
   return (
     <div style={{ 
@@ -42,6 +44,7 @@ function HeroAnimation() {
         
         {/* Content wrapper */}
         <div style={{ position: 'relative', zIndex: '1' }}>
+<<<<<<< HEAD
           {/* Header */}
           <div style={{
             display: 'flex',
@@ -284,20 +287,11 @@ function HeroAnimation() {
               Live
             </div>
           </div>
+=======
+          <AppointmentCardWidget />
+>>>>>>> d8db9f5091352e850318560371c1c6c4b933a75a
         </div>
       </div>
-      
-      <style>{`
-        @keyframes pulse1 { 0% { height: 6px; } 100% { height: 16px; } }
-        @keyframes pulse2 { 0% { height: 8px; } 100% { height: 20px; } }
-        @keyframes pulse3 { 0% { height: 10px; } 100% { height: 18px; } }
-        @keyframes pulse4 { 0% { height: 6px; } 100% { height: 22px; } }
-        @keyframes pulse5 { 0% { height: 12px; } 100% { height: 18px; } }
-        @keyframes pulse6 { 0% { height: 8px; } 100% { height: 20px; } }
-        @keyframes pulse7 { 0% { height: 10px; } 100% { height: 16px; } }
-        @keyframes pulse8 { 0% { height: 6px; } 100% { height: 18px; } }
-        @keyframes pulse9 { 0% { height: 14px; } 100% { height: 22px; } }
-      `}</style>
     </div>
   )
 }
