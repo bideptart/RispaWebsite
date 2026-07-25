@@ -37,39 +37,41 @@ function App() {
   }
 
   const handleNavigate = (pageId) => {
-    if (pageId === 'features') {
-      navigate('/features')
-    } else if (pageId === 'industries' || pageId === 'how-it-works') {
-      navigate('/industries')
-    } else if (pageId === 'pricing') {
-      navigate('/pricing')
-    } else if (pageId === 'faq') {
-      navigate('/faq')
-    } else if (pageId === 'blog') {
-      navigate('/blog')
-    } else if (pageId === 'sign-in') {
-      navigate('/sign-in')
-    } else if (pageId === 'home') {
+    const pageRoutes = {
+      features: '/features',
+      industries: '/industries',
+      pricing: '/pricing',
+      faq: '/faq',
+      blog: '/blog',
+      'sign-in': '/sign-in',
+      home: '/',
+    }
+
+    if (pageRoutes[pageId]) {
+      navigate(pageRoutes[pageId])
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+      return
+    }
+
+    if (location.pathname !== '/') {
       navigate('/')
-    } else {
-      if (location.pathname !== '/') {
-        navigate('/')
-        setTimeout(() => {
-          const elem = document.getElementById(pageId)
-          if (elem) elem.scrollIntoView({ behavior: 'smooth' })
-        }, 150)
-      } else {
+      setTimeout(() => {
         const elem = document.getElementById(pageId)
-        if (elem) {
-          elem.scrollIntoView({ behavior: 'smooth' })
-        } else {
-          window.scrollTo({ top: 0, behavior: 'smooth' })
-        }
+        if (elem) elem.scrollIntoView({ behavior: 'smooth' })
+      }, 150)
+    } else {
+      const elem = document.getElementById(pageId)
+      if (elem) {
+        elem.scrollIntoView({ behavior: 'smooth' })
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
       }
     }
   }
 
-  if (showSplash) {
+  const isHomePath = location.pathname === '/'
+
+  if (showSplash && isHomePath) {
     return <SplashScreen onFinish={() => setShowSplash(false)} />
   }
 
@@ -97,14 +99,6 @@ function App() {
       </Routes>
     </>
   )
-}
-
-export default App
-  )
-}
-
-function App() {
-  return <AppInner />
 }
 
 export default App
