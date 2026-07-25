@@ -32,32 +32,37 @@ function IndustryCard({ industry }) {
   }
 
   return (
-    <div className="industry-card-container">
-      <div className="industry-card-inner">
-        {/* Front Side */}
-        <div className="industry-card-front">
-          <div className="industry-card-top">
-            <span className="industry-card-number">{industry.number}</span>
-            <div className="industry-card-icon">
-              {icons[industry.icon]}
-            </div>
-          </div>
-          <h3>{industry.title}</h3>
-          <p>{industry.description}</p>
-        </div>
-        {/* Back Side (same as front for now, or we can add different content later) */}
-        <div className="industry-card-back">
-          <div className="industry-card-top">
-            <span className="industry-card-number">{industry.number}</span>
-            <div className="industry-card-icon">
-              {icons[industry.icon]}
-            </div>
-          </div>
-          <h3>{industry.title}</h3>
-          <p>{industry.description}</p>
-        </div>
+    <article
+      className="industry-card"
+      style={{
+        borderRadius: '24px',
+        padding: '1.75rem',
+        background: '#ffffff',
+        border: '1px solid rgba(215, 231, 227, 0.9)',
+        boxShadow: '0 16px 40px -24px rgba(13, 36, 34, 0.12)',
+        transition: 'all 0.3s ease',
+        cursor: 'pointer',
+        position: 'relative',
+        overflow: 'hidden'
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.transform = 'translateY(-6px)';
+        e.currentTarget.style.boxShadow = '0 24px 60px -30px rgba(33, 137, 126, 0.35)';
+        e.currentTarget.style.borderColor = 'rgba(33, 137, 126, 0.5)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = 'translateY(0)';
+        e.currentTarget.style.boxShadow = '0 16px 40px -24px rgba(13, 36, 34, 0.12)';
+        e.currentTarget.style.borderColor = 'rgba(215, 231, 227, 0.9)';
+      }}
+    >
+      <div className="industry-card__top">
+        <span className="industry-card__number">{industry.number}</span>
+        <div className="industry-card__icon">{icons[industry.icon]}</div>
       </div>
-    </div>
+      <h3>{industry.title}</h3>
+      <p>{industry.description}</p>
+    </article>
   )
 }
 

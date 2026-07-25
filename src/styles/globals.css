@@ -1073,6 +1073,14 @@ textarea {
     text-align: center;
   }
 
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pricing-compare__row {
+    grid-template-columns: 1fr;
+  }
+
   .hero__copy {
     margin: 0 auto;
     justify-items: center;
@@ -1458,6 +1466,45 @@ textarea {
   gap: 1.75rem;
 }
 
+.pricing-shell__panel {
+  display: grid;
+  gap: 1.5rem;
+  padding: clamp(1.25rem, 2vw, 2rem);
+  border: 1px solid rgba(215, 231, 227, 0.95);
+  border-radius: var(--radius-xl);
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(14px);
+}
+
+.pricing-shell__header {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: center;
+  text-align: center;
+}
+
+.pricing-shell__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.pricing-shell__copy {
+  max-width: 62ch;
+  margin: 0;
+  color: var(--text-soft);
+  line-height: 1.7;
+}
+
 .pricing-toggle {
   width: fit-content;
   margin: 0 auto;
@@ -1495,6 +1542,18 @@ textarea {
   display: grid;
   gap: 1rem;
   position: relative;
+  padding: 1.6rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(215, 231, 227, 0.95);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 16px 40px -28px rgba(13, 36, 34, 0.2);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.pricing-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(33, 137, 126, 0.4);
+  box-shadow: 0 24px 56px -30px rgba(33, 137, 126, 0.3);
 }
 
 .pricing-card.is-featured {
@@ -1502,23 +1561,149 @@ textarea {
   background: linear-gradient(180deg, rgba(33, 137, 126, 0.05), rgba(255, 255, 255, 0.96));
 }
 
+.pricing-card__top {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.pricing-card__heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
 .pricing-card__tag {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  padding: 0.42rem 0.72rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem 0.72rem;
   border-radius: 999px;
   background: var(--accent);
   color: white;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
+.pricing-card__description {
+  min-height: 3.4rem;
+  color: var(--text-soft);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.pricing-card__price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+
+.pricing-card__price strong {
+  font-family: var(--heading-font);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
 .pricing-card__price span {
   color: var(--text-soft);
   font-size: 0.95rem;
+}
+
+.pricing-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.pricing-card__meta span {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(33, 137, 126, 0.08);
+  color: var(--accent-dark);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.pricing-card__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.pricing-card__list li {
+  position: relative;
+  padding-left: 1.2rem;
+  color: var(--text-soft);
+  line-height: 1.55;
+}
+
+.pricing-card__list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.pricing-compare {
+  display: grid;
+  gap: 0.85rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(215, 231, 227, 0.9);
+}
+
+.pricing-compare__header {
+  color: var(--accent-dark);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+}
+
+.pricing-compare__body {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.pricing-compare__row {
+  display: grid;
+  grid-template-columns: minmax(140px, 180px) 1fr;
+  gap: 1rem;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid rgba(215, 231, 227, 0.7);
+}
+
+.pricing-compare__row:last-child {
+  border-bottom: 0;
+}
+
+.pricing-compare__row > span {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.pricing-compare__values {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.pricing-compare__values span {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.36rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(242, 243, 247, 0.95);
+  color: var(--text-soft);
+  font-size: 0.84rem;
 }
 
 .faq-list {
@@ -2255,6 +2440,285 @@ textarea {
   color: var(--text-soft);
   margin: 0;
   line-height: 1.45;
+}
+
+/* ==========================================================================
+   Hero Appointment Card Widget (Rispa agent chat)
+   ========================================================================== */
+
+.appointment-widget {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.appointment-widget__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.appointment-widget__agent {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.appointment-widget__avatar {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-dark);
+  flex-shrink: 0;
+}
+
+.appointment-widget__avatar-ring {
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  animation: appointment-pulse 2s ease-out infinite;
+}
+
+.appointment-widget__name {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.appointment-widget__status {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--text-soft);
+}
+
+.appointment-widget__live {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.appointment-widget__waveform {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 16px;
+}
+
+.appointment-widget__wave-bar {
+  width: 3px;
+  border-radius: 2px;
+  background: var(--accent-dark);
+  animation: appointment-wave 1s ease-in-out infinite;
+}
+
+.appointment-widget__timer {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.125rem 0.625rem;
+  border-radius: 999px;
+  background: var(--border);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--accent-dark);
+}
+
+.appointment-widget__timer-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: appointment-pulse 1.5s ease-in-out infinite;
+}
+
+.appointment-widget__langs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+
+.appointment-widget__lang {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: 999px;
+  background: var(--surface-soft);
+  color: var(--text-soft);
+}
+
+.appointment-widget__lang--active {
+  background: var(--accent);
+  color: #fff;
+}
+
+.appointment-widget__chat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-height: 100px;
+  font-size: 0.875rem;
+}
+
+.appointment-widget__bubble {
+  max-width: 82%;
+  padding: 0.5rem 0.75rem;
+  border-radius: 12px;
+  line-height: 1.45;
+  animation: appointment-fadein 0.35s ease;
+}
+
+.appointment-widget__bubble--agent {
+  align-self: flex-start;
+  background: var(--surface-soft);
+  color: var(--text);
+  border-bottom-left-radius: 4px;
+}
+
+.appointment-widget__bubble--user {
+  align-self: flex-end;
+  margin-left: auto;
+  background: rgba(33, 137, 126, 0.08);
+  color: var(--accent-dark);
+  border-bottom-right-radius: 4px;
+}
+
+.appointment-widget__typing {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  width: fit-content;
+}
+
+.appointment-widget__typing-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-soft);
+  animation: appointment-bounce 0.9s ease-in-out infinite;
+}
+
+.appointment-widget__confirm {
+  animation: appointment-fadein 0.4s ease;
+}
+
+.appointment-widget__confirm-text {
+  margin: 0.5rem 0 0.875rem;
+  text-align: center;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--accent-dark);
+  line-height: 1.5;
+}
+
+.appointment-widget__details {
+  background: var(--surface-soft);
+  border-radius: 12px;
+  padding: 0.875rem;
+}
+
+.appointment-widget__details-label {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin-bottom: 0.625rem;
+  font-size: 0.75rem;
+  color: var(--text-soft);
+}
+
+.appointment-widget__date-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.appointment-widget__nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-soft);
+  cursor: pointer;
+}
+
+.appointment-widget__nav-btn:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.appointment-widget__date {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.appointment-widget__slots {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.appointment-widget__slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--text-soft);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.appointment-widget__slot--active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.appointment-widget__footer {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.75rem;
+  color: var(--text-soft);
+}
+
+@keyframes appointment-wave {
+  0%, 100% { transform: scaleY(0.5); }
+  50% { transform: scaleY(1); }
+}
+
+@keyframes appointment-fadein {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes appointment-pulse {
+  0% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.05); }
+  100% { opacity: 0; transform: scale(1.15); }
+}
+
+@keyframes appointment-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
 }
 
 @media (max-width: 992px) {
