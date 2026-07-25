@@ -268,7 +268,7 @@ function SignInPage({ onNavigate }) {
                     background: 'transparent',
                     border: 'none',
                     color: '#59716d',
-                    cursor: 'pointer',
+
                     fontSize: '0.9rem',
                     fontWeight: '600'
                   }}
@@ -278,7 +278,7 @@ function SignInPage({ onNavigate }) {
               </div>
             </div>
 
-            <label style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', cursor: 'pointer' }}>
+            <label style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
               <input 
                 type="checkbox" 
                 checked={keepSignedIn}
@@ -288,7 +288,6 @@ function SignInPage({ onNavigate }) {
                   height: '18px',
                   borderRadius: '4px',
                   border: '2px solid #e2e8f0',
-                  cursor: 'pointer',
                   accentColor: '#21897e'
                 }}
               />
@@ -307,8 +306,7 @@ function SignInPage({ onNavigate }) {
                 border: 'none',
                 width: '100%',
                 boxShadow: '0 10px 30px -10px rgba(0,0,0,0.3)',
-                marginTop: '0.5rem',
-                cursor: 'pointer'
+                marginTop: '0.5rem'
               }}
             >
               Sign in →

@@ -4,6 +4,8 @@ import Home from './pages/Home'
 import FeaturesPage from './pages/FeaturesPage'
 import IndustriesPage from './pages/IndustriesPage'
 import PricingPage from './pages/PricingPage'
+import FAQPage from './pages/FAQPage'
+import BlogPage from './pages/BlogPage'
 import SignInPage from './pages/SignInPage'
 import SplashScreen from './components/SplashScreen/SplashScreen'
 
@@ -24,19 +26,19 @@ function App() {
     } else if (pageId === 'pricing') {
       setActivePage('pricing')
       window.scrollTo({ top: 0, behavior: 'smooth' })
+    } else if (pageId === 'faq') {
+      setActivePage('faq')
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    } else if (pageId === 'blog') {
+      setActivePage('blog')
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     } else if (pageId === 'home') {
       setActivePage('home')
       window.scrollTo({ top: 0, behavior: 'smooth' })
-    } else if (pageId === 'blog') {
-      // For now, set active page to blog (we can add a Blog page later)
-      setActivePage('blog')
-      window.scrollTo({ top: 0, behavior: 'smooth' })
     } else if (pageId === 'how-it-works') {
-      // "how-it-works" is the industries section on home page for now
       setActivePage('industries')
       window.scrollTo({ top: 0, behavior: 'smooth' })
     } else {
-      // If it's a section on home page (e.g. how-it-works, faq, cta)
       setActivePage('home')
       setTimeout(() => {
         const elem = document.getElementById(pageId)
@@ -65,6 +67,10 @@ function App() {
         return <IndustriesPage onNavigate={handleNavigate} />
       case 'pricing':
         return <PricingPage onNavigate={handleNavigate} />
+      case 'faq':
+        return <FAQPage onNavigate={handleNavigate} />
+      case 'blog':
+        return <BlogPage onNavigate={handleNavigate} />
       default:
         return <Home onNavigate={handleNavigate} />
     }

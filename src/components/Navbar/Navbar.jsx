@@ -34,7 +34,6 @@ function Navbar({ activePage, onNavigate }) {
                 border: 'none', 
                 color: '#0d2422', 
                 fontWeight: '600', 
-                cursor: 'pointer',
                 padding: '0.7rem 1rem',
                 fontSize: '0.95rem'
               }}

@@ -174,7 +174,6 @@ function HeroAnimation() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                cursor: 'pointer',
                 color: '#59716d'
               }}>‹</button>
               <div style={{ 
@@ -192,7 +191,6 @@ function HeroAnimation() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                cursor: 'pointer',
                 color: '#59716d'
               }}>›</button>
             </div>
@@ -210,7 +208,6 @@ function HeroAnimation() {
                 padding: '0.75rem',
                 color: '#59716d',
                 fontWeight: '600',
-                cursor: 'pointer',
                 fontSize: '0.95rem'
               }}>09:00</button>
               <button style={{

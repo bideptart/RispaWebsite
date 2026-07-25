@@ -1,6 +1,7 @@
 import { features } from '../../data/features'
 import SectionTitle from '../SectionTitle'
 import Container from '../Container'
+import Stats from '../Stats/Stats'
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -66,6 +67,8 @@ function Features() {
           }
           description="Rispa.ai skips the brittle speech-to-text and text-to-speech relay and runs on a single audio-native engine — so your callers hear pauses, emotion, and timing that feel right."
         />
+        
+        <Stats />
         
         <div className="features-slider">
           <div className="slider-indicator">

@@ -3,6 +3,7 @@ const links = [
   { id: 'industries', label: 'Industries' },
   { id: 'pricing', label: 'Pricing' },
   { id: 'faq', label: 'FAQ' },
+  { id: 'blog', label: 'Blog' },
 ]
 
 function NavLinks({ activePage, onNavigate, onClick }) {

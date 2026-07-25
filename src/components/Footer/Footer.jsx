@@ -74,7 +74,6 @@ function Footer({ onNavigate }) {
               borderRadius: '999px',
               fontSize: '0.95rem',
               fontWeight: '700',
-              cursor: 'pointer',
               boxShadow: '0 0 20px rgba(33,137,126,0.3)'
             }}>
               Customer dashboard ↗
