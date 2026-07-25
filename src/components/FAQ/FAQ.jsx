@@ -15,25 +15,15 @@ function FAQ() {
         description="Everything you need to know about Rispa.ai, our voice agents, and how to get started."
         align="center"
       />
-
-      {/* Constrained list — matches snapshot 2 width */}
-      <Container>
-        <div style={{
-          maxWidth: '820px',
-          margin: '0 auto',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '0.6rem',
-        }}>
-          {faqItems.map((item, index) => (
-            <Accordion
-              key={item.question}
-              item={item}
-              open={openIndex === index}
-              onToggle={() => setOpenIndex(openIndex === index ? -1 : index)}
-            />
-          ))}
-        </div>
+      <Container className="faq-list faq-list--compact">
+        {faqItems.map((item, index) => (
+          <Accordion
+            key={item.question}
+            item={item}
+            open={openIndex === index}
+            onToggle={() => setOpenIndex(openIndex === index ? -1 : index)}
+          />
+        ))}
       </Container>
     </section>
   )
