@@ -4,14 +4,18 @@
     <meta charset="utf-8" />
     <title>Rispa.ai</title>
     <script>
-      // GitHub Pages SPA redirect trick.
-      // Converts a 404 URL into a query param so index.html can read it.
+      // GitHub Pages SPA redirect — preserves the path after the repo base
+      var segmentCount = 1; // 1 = repo deployed at /RispaWebsite/
       var l = window.location;
       l.replace(
-        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-        l.pathname.split('/').slice(0, 1).join('/') +
-        '/?p=' + encodeURIComponent(l.pathname + l.search) +
-        (l.hash || '')
+        l.protocol + '//' + l.hostname +
+        (l.port ? ':' + l.port : '') +
+        l.pathname.split('/').slice(0, 1 + segmentCount).join('/') +
+        '/?p=' + encodeURIComponent(
+          l.pathname.split('/').slice(1 + segmentCount).join('/') +
+          (l.search ? l.search : '') +
+          (l.hash ? l.hash : '')
+        )
       );
     </script>
   </head>
