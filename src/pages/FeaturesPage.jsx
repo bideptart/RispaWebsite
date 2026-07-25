@@ -45,7 +45,7 @@ function FeaturesPage({ onNavigate }) {
 
       <Features />
 
-      <CTA onNavigate={onNavigate} />
+      <CTA variant="features" onNavigate={onNavigate} />
     </div>
   )
 }

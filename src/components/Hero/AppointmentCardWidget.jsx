@@ -1,5 +1,23 @@
-﻿import { useEffect, useRef, useState } from "react";
-import { Bot, Calendar, ChevronLeft, ChevronRight, Check, PhoneIncoming } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+
+const BotIcon = ({ size = 20, className = "" }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
+);
+const CalendarIcon = ({ size = 14 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+);
+const ChevronLeftIcon = ({ size = 14 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+);
+const ChevronRightIcon = ({ size = 14 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+);
+const CheckIcon = ({ size = 14 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+);
+const PhoneIncomingIcon = ({ size = 14 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 2 16 8 22 8"/><line x1="22" x2="16" y1="2" y2="8"/><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+);
 
 const LINES = [
   { who: "agent", text: "Hi, this is Rispa calling from the clinic. Would you like to book an appointment?" },
@@ -57,7 +75,7 @@ export default function AppointmentCardWidget() {
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
           <div className="relative w-11 h-11 rounded-xl bg-[rgba(33,137,126,0.1)] flex items-center justify-center">
-            <Bot size={20} className="text-[#1a7268]" />
+            <BotIcon size={20} className="text-[#1a7268]" />
             <span className="absolute -inset-[2px] rounded-xl border-2 border-[#21897e] animate-ping opacity-60" />
           </div>
           <div>
@@ -125,24 +143,24 @@ export default function AppointmentCardWidget() {
 
           <div className="bg-[#f7fbfa] rounded-xl p-4">
             <div className="flex items-center gap-1.5 mb-3 text-[#59716d] text-xs font-medium">
-              <Calendar size={14} />
+              <CalendarIcon size={14} />
               <span>Appointment details</span>
             </div>
 
             <div className="flex items-center justify-between mb-3">
               <button aria-label="Previous day" className="p-1 rounded-md border border-[#d7e7e3] hover:bg-white text-[#59716d]">
-                <ChevronLeft size={14} />
+                <ChevronLeftIcon size={14} />
               </button>
               <span className="text-sm font-semibold text-[#0d2422]">28 Jan</span>
               <button aria-label="Next day" className="p-1 rounded-md border border-[#d7e7e3] hover:bg-white text-[#59716d]">
-                <ChevronRight size={14} />
+                <ChevronRightIcon size={14} />
               </button>
             </div>
 
             <div className="grid grid-cols-3 gap-2">
               <button className="text-sm py-2.5 rounded-lg border border-[#d7e7e3] bg-white text-[#59716d] font-medium hover:border-[#21897e] transition-colors">09:00</button>
               <button className="text-sm py-2.5 rounded-lg bg-[#21897e] text-white font-medium flex items-center justify-center gap-1 shadow-[0_4px_12px_-4px_rgba(33,137,126,0.4)]">
-                10:00 <Check size={14} />
+                10:00 <CheckIcon size={14} />
               </button>
               <button className="text-sm py-2.5 rounded-lg border border-[#d7e7e3] bg-white text-[#59716d] font-medium hover:border-[#21897e] transition-colors">11:00</button>
             </div>
@@ -152,7 +170,7 @@ export default function AppointmentCardWidget() {
 
       {/* Footer */}
       <div className="flex items-center gap-1.5 mt-4 pt-3.5 border-t border-[rgba(33,137,126,0.08)] text-xs text-[#59716d]">
-        <PhoneIncoming size={14} />
+        <PhoneIncomingIcon size={14} />
         <span>Inbound call · Hong Kong</span>
       </div>
     </div>
