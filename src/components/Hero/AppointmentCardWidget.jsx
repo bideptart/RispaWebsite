@@ -1,4 +1,4 @@
-﻿import { useEffect, useRef, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { Bot, Calendar, ChevronLeft, ChevronRight, Check, PhoneIncoming } from "lucide-react";
 
 const LINES = [
@@ -13,7 +13,6 @@ export default function AppointmentCardWidget() {
   const [visibleLines, setVisibleLines] = useState([]);
   const [typing, setTyping] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
-  const started = useRef(false);
 
   useEffect(() => {
     const timer = setInterval(() => setSeconds((s) => s + 1), 1000);
@@ -21,11 +20,18 @@ export default function AppointmentCardWidget() {
   }, []);
 
   useEffect(() => {
-    if (started.current) return;
-    started.current = true;
+    let cancelled = false;
+    const timeoutIds = [];
+    const schedule = (fn, ms) => {
+      const id = setTimeout(() => {
+        if (!cancelled) fn();
+      }, ms);
+      timeoutIds.push(id);
+      return id;
+    };
 
     let i = 0;
-    const kickoff = setTimeout(() => {
+    schedule(() => {
       setCallState("Live");
       playNext();
     }, 600);
@@ -33,11 +39,11 @@ export default function AppointmentCardWidget() {
     function playNext() {
       if (i < LINES.length) {
         setTyping(true);
-        setTimeout(() => {
+        schedule(() => {
           setTyping(false);
           setVisibleLines((prev) => [...prev, LINES[i]]);
           i += 1;
-          setTimeout(playNext, 900);
+          schedule(playNext, 900);
         }, 700);
       } else {
         setCallState("Booking confirmed");
@@ -45,7 +51,14 @@ export default function AppointmentCardWidget() {
       }
     }
 
-    return () => clearTimeout(kickoff);
+    return () => {
+      cancelled = true;
+      timeoutIds.forEach(clearTimeout);
+      setVisibleLines([]);
+      setTyping(false);
+      setConfirmed(false);
+      setCallState("Connecting…");
+    };
   }, []);
 
   const mm = String(Math.floor(seconds / 60)).padStart(2, "0");
@@ -91,7 +104,7 @@ export default function AppointmentCardWidget() {
 
       {/* Chat area */}
       <div className="flex flex-col gap-2.5 text-sm min-h-[110px] mb-2">
-        {visibleLines.map((line, idx) => (
+        {visibleLines.filter(Boolean).map((line, idx) => (
           <div
             key={idx}
             className={`max-w-[85%] px-3.5 py-2.5 rounded-xl animate-[fadein_0.35s_ease] leading-relaxed ${
