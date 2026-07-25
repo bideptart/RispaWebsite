@@ -27,6 +27,14 @@ function App() {
     } else if (pageId === 'home') {
       setActivePage('home')
       window.scrollTo({ top: 0, behavior: 'smooth' })
+    } else if (pageId === 'blog') {
+      // For now, set active page to blog (we can add a Blog page later)
+      setActivePage('blog')
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    } else if (pageId === 'how-it-works') {
+      // "how-it-works" is the industries section on home page for now
+      setActivePage('industries')
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     } else {
       // If it's a section on home page (e.g. how-it-works, faq, cta)
       setActivePage('home')

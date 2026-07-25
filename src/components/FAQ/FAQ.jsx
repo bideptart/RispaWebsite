@@ -22,6 +22,7 @@ function FAQ() {
             item={item}
             open={openIndex === index}
             onToggle={() => setOpenIndex(openIndex === index ? -1 : index)}
+            index={index}
           />
         ))}
       </Container>
