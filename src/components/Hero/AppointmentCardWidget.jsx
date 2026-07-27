@@ -45,7 +45,7 @@ export default function AppointmentCardWidget() {
         setTyping(true);
         schedule(() => {
           setTyping(false);
-          setVisibleLines((prev) => [...prev, LINES[i]]);
+          setVisible((prev) => [...prev, LINES[i]]);
           i += 1;
           schedule(playNext, 900);
         }, 700);
@@ -59,7 +59,7 @@ export default function AppointmentCardWidget() {
     return () => {
       cancelled = true;
       timeoutIds.forEach(clearTimeout);
-      setVisibleLines([]);
+      setVisible([]);
       setTyping(false);
       setConfirmed(false);
       setCallState("Connecting…");
