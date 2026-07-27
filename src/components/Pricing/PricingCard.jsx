@@ -1,7 +1,27 @@
+import { useEffect, useRef } from 'react'
+import { motion, useSpring, useTransform } from 'framer-motion'
 import Button from '../Button'
-import { formatPrice } from '../../utils/helpers'
 
 function PricingCard({ plan, billing }) {
+  const count = useSpring(plan.price, {
+    stiffness: 100,
+    damping: 30,
+    mass: 1
+  })
+  
+  const rounded = useTransform(count, (latest) => Math.round(latest))
+  const prevPriceRef = useRef(plan.price)
+
+  useEffect(() => {
+    const from = prevPriceRef.current
+    const to = plan.price
+
+    if (from !== to) {
+      count.set(to)
+      prevPriceRef.current = to
+    }
+  }, [plan.price, count])
+
   return (
     <article className={`pricing-card ${plan.featured ? 'is-featured' : ''}`}>
       <div className="pricing-card__top">
@@ -13,7 +33,17 @@ function PricingCard({ plan, billing }) {
       </div>
 
       <div className="pricing-card__price">
-        <strong>{formatPrice(plan.price)}</strong>
+        <strong>
+          <motion.span
+            style={{
+              display: 'inline-block',
+              fontVariantNumeric: 'tabular-nums',
+              fontFeatureSettings: '"tnum"'
+            }}
+          >
+            {rounded}
+          </motion.span>
+        </strong>
         <span>
           {plan.price === 0 ? 'custom quote' : `/ user / ${billing === 'monthly' ? 'mo' : 'mo, billed yearly'}`}
         </span>

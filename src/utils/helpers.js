@@ -4,5 +4,6 @@ export function cx(...classes) {
 
 export function formatPrice(value) {
   if (value === 0) return 'Custom'
-  return `$${value}`
+  // Format number with commas for thousands
+  return `$${value.toLocaleString('en-US')}`
 }

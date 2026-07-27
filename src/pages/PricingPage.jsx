@@ -7,47 +7,62 @@ import CTA from '../components/CTA/CTA'
 function PricingPage({ onNavigate }) {
   return (
     <div className="page-view pricing-page">
-      <section className="pricing-hero-section">
-        <Container className="pricing-hero-container">
-          <div className="pricing-hero__header">
-            <Badge>• FAIR PRICING · PAY ONLY FOR WHAT YOU TALK</Badge>
-            <h1 className="pricing-hero__title">
-              Pick your <span className="text-teal">plan</span>.
+      {/* Clean Hero Section */}
+      <section className="pricing-hero-clean">
+        <Container>
+          <div className="pricing-hero-clean__content">
+            <div className="pricing-badge-pill">
+              • PAY AS YOU GO · TRANSPARENT PRICING · NO HIDDEN FEES
+            </div>
+            
+            <h1 className="pricing-hero-clean__title">
+              Pick your <span className="plan-highlight">plan.</span>
             </h1>
-            <p className="pricing-hero__subtitle">
-              Voice from $0.10 per minute. Top up with $20, $50, or $100 of credit, unlock up to 3 concurrent AI agents, and scale from a single line to a full call center — no contracts, no surprises.
+            
+            <p className="pricing-hero-clean__description">
+              All plans include inbound calling, call recording, real-time transcription, and per-second 
+              billing with no minute-rounding. Prices are in $, billed once as wallet credit that stays valid for 
+              60 days — no contracts, no setup fees, cancel anytime.
             </p>
 
-            <div className="pricing-hero__compliance-pills">
-              <span>🛡️ Enterprise compliant</span>
-              <span>🔒 Secure payments</span>
-              <span>✅ PII protected</span>
-            </div>
-          </div>
-
-          <div className="pricing-hero__stats-grid">
-            <div className="pricing-stat-card">
-              <div className="stat-card-label">
-                <span className="icon">⚡</span> VOICE RATE
+            {/* 3 Info Cards Row */}
+            <div className="pricing-info-cards">
+              <div className="pricing-info-card">
+                <div className="info-card-icon">🎤</div>
+                <div className="info-card-label">VOICE RATE</div>
+                <h3 className="info-card-value">From $0.10 / min</h3>
+                <p className="info-card-desc">Best rate on the Scale plan.</p>
               </div>
-              <h3 className="stat-card-main">From $0.10 / min</h3>
-              <p className="stat-card-sub">Best rate on the Scale plan.</p>
+
+              <div className="pricing-info-card">
+                <div className="info-card-icon">💰</div>
+                <div className="info-card-label">MINIMUM TOP-UP</div>
+                <h3 className="info-card-value">$20</h3>
+                <p className="info-card-desc">No additional fees at checkout.</p>
+              </div>
+
+              <div className="pricing-info-card">
+                <div className="info-card-icon">📞</div>
+                <div className="info-card-label">INCLUDED ON EVERY PLAN</div>
+                <h3 className="info-card-value">Call recording</h3>
+                <p className="info-card-desc">With PII redaction, synced to your dashboard, CRM, or webhook.</p>
+              </div>
             </div>
 
-            <div className="pricing-stat-card">
-              <div className="stat-card-label">
-                <span className="icon">🎧</span> MINIMUM TOP-UP
+            {/* Compliance Badges */}
+            <div className="pricing-compliance-row">
+              <div className="compliance-item">
+                <span className="compliance-icon">✓</span>
+                <span>SOC 2 compliant</span>
               </div>
-              <h3 className="stat-card-main">$20</h3>
-              <p className="stat-card-sub">Valid for 60 days.</p>
-            </div>
-
-            <div className="pricing-stat-card">
-              <div className="stat-card-label">
-                <span className="icon">🎙️</span> INCLUDED ON EVERY PLAN
+              <div className="compliance-item">
+                <span className="compliance-icon">✓</span>
+                <span>Stripe secured</span>
               </div>
-              <h3 className="stat-card-main">Call recording</h3>
-              <p className="stat-card-sub">With real-time transcripts, recording, analytics, and unlimited test calls in the playground.</p>
+              <div className="compliance-item">
+                <span className="compliance-icon">✓</span>
+                <span>GDPR compliant</span>
+              </div>
             </div>
           </div>
         </Container>

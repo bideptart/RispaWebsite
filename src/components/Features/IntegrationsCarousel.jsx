@@ -1,44 +1,21 @@
-import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { useState } from 'react'
 
 function IntegrationsCarousel() {
-  const [isPaused, setIsPaused] = useState(false)
-
-  // Create array of integration images (SMS, Webhooks, Scheduling, Analytics)
+  // Create array of integration images (Webhooks, Scheduling, Analytics)
   const integrationImages = [
-    { src: '/images/sms.png', label: 'SMS' },
     { src: '/images/webhooks.png', label: 'Webhooks' },
     { src: '/images/scudeling.png', label: 'Scheduling' },
     { src: '/images/anyslit.png', label: 'Analytics' },
   ]
 
-  // Duplicate images for seamless loop
-  const allImages = [...integrationImages, ...integrationImages]
-
   return (
     <div className="integrations-carousel-section">
       <div className="integrations-carousel-track">
-        <motion.div
-          className="integrations-carousel-content"
-          animate={{
-            x: isPaused ? 0 : [0, -50 + '%']
-          }}
-          transition={{
-            x: {
-              repeat: Infinity,
-              repeatType: "loop",
-              duration: 20,
-              ease: "linear"
-            }
-          }}
-          style={{ x: 0 }}
-        >
-          {allImages.map((item, index) => (
+        <div className="integrations-carousel-content">
+          {integrationImages.map((item, index) => (
             <div 
-              key={index} 
+              key={`${item.label}-${index}`}
               className="integration-card"
-              onMouseEnter={() => setIsPaused(true)}
-              onMouseLeave={() => setIsPaused(false)}
             >
               <img 
                 src={item.src} 
@@ -47,7 +24,7 @@ function IntegrationsCarousel() {
               />
             </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </div>
   )
