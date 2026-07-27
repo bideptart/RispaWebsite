@@ -2039,12 +2039,40 @@ textarea {
 }
 
 .cta--features .cta__actions .button {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  font-size: 0.88rem;
+  font-size: 0.95rem;
   font-weight: 600;
-  letter-spacing: 0.02em;
-  padding: 0.75rem 1.5rem;
+  padding: 0.75rem 1.75rem;
   border-radius: 999px;
+}
+
+/* "See plans & pricing" → ghost/underline text link */
+.cta--features .cta__actions .button--primary {
+  background: transparent;
+  border-color: transparent;
+  color: rgba(255, 255, 255, 0.85);
+  box-shadow: none;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.cta--features .cta__actions .button--primary:hover {
+  color: #ffffff;
+  transform: none;
+  box-shadow: none;
+}
+
+/* "Book a demo" → solid white pill */
+.cta--features .cta__actions .button--secondary {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: var(--accent-dark);
+  font-weight: 700;
+  box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.2);
+}
+
+.cta--features .cta__actions .button--secondary:hover {
+  background: #f0faf9;
+  transform: translateY(-2px);
 }
 
 .footer {
@@ -3619,11 +3647,14 @@ textarea {
 
 
 .roi-calculator {
-  margin-top: 48px;
+  margin-top: 2rem;
   background: #f4faf9;
   border-radius: 20px;
-  padding: 48px 40px;
+  padding: 2rem 2.5rem;
   border: 1px solid rgba(33, 137, 126, 0.12);
+  max-width: 820px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .roi-calculator__input {
@@ -4171,4 +4202,90 @@ textarea {
   width: 24px;
   border-radius: 999px;
   background: var(--accent);
+}
+
+.industry-showcase-grid {
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.industry-call-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 24px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 16px 40px -24px rgba(13, 36, 34, 0.12);
+}
+
+.industry-call-card__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.industry-call-card__icon {
+  font-size: 24px;
+}
+
+.industry-call-card__header h3 {
+  font-size: 17px;
+  font-weight: 700;
+  color: #0f2b27;
+}
+
+.industry-call-card__conversation {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.chat-bubble {
+  padding: 10px 14px;
+  border-radius: 14px;
+  max-width: 90%;
+}
+
+.chat-bubble__label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-bottom: 4px;
+  opacity: 0.7;
+}
+
+.chat-bubble p {
+  font-size: 13.5px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.chat-bubble--customer {
+  background: #f1f5f4;
+  color: #0f2b27;
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+}
+
+.chat-bubble--ai {
+  background: rgba(33, 137, 126, 0.1);
+  color: #0f2b27;
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+
+.chat-bubble--ai .chat-bubble__label {
+  color: #21897e;
+}
+
+@media (max-width: 900px) {
+  .industry-showcase-grid {
+    grid-template-columns: 1fr;
+  }
 }

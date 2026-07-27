@@ -23,7 +23,7 @@ function FAQ() {
       {/* Accordion list — constrained to 820px, centered */}
       <Container>
         <div style={{
-          maxWidth: '820px',
+          maxWidth: '960px',
           margin: '0 auto',
           display: 'flex',
           flexDirection: 'column',
