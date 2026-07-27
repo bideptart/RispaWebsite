@@ -8,9 +8,12 @@ function SplashScreen({ onFinish }) {
   useEffect(() => {
     const enterTimer = setTimeout(() => setPhase('exit'), 2000)
     const finishTimer = setTimeout(() => onFinish(), 2800)
+    // Hard safety: never block longer than 4s
+    const safetyTimer = setTimeout(() => onFinish(), 4000)
     return () => {
       clearTimeout(enterTimer)
       clearTimeout(finishTimer)
+      clearTimeout(safetyTimer)
     }
   }, [onFinish])
 

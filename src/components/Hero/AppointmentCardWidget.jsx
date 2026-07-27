@@ -1,23 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-
-const Bot = ({ size = 20 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
-);
-const Calendar = ({ size = 14 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
-);
-const ChevronLeft = ({ size = 14 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-);
-const ChevronRight = ({ size = 14 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-);
-const Check = ({ size = 14 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-);
-const PhoneIncoming = ({ size = 14 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 2 16 8 22 8"/><line x1="22" x2="16" y1="2" y2="8"/><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-);
+﻿import { useEffect, useState } from "react";
+import { Bot, Calendar, ChevronLeft, ChevronRight, Check, PhoneIncoming } from "lucide-react";
 
 const LINES = [
   { who: "agent", text: "Hi, this is Rispa calling from the clinic. Would you like to book an appointment?" },
@@ -34,7 +16,6 @@ export default function AppointmentCardWidget() {
   const [visibleLines, setVisible] = useState([]);
   const [typing, setTyping] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
-  const started = useRef(false);
 
   useEffect(() => {
     const t = setInterval(() => setSeconds((s) => s + 1), 1000);
@@ -42,12 +23,18 @@ export default function AppointmentCardWidget() {
   }, []);
 
   useEffect(() => {
-    if (started.current) return;
-    started.current = true;
+    let cancelled = false;
+    const timeoutIds = [];
+    const schedule = (fn, ms) => {
+      const id = setTimeout(() => {
+        if (!cancelled) fn();
+      }, ms);
+      timeoutIds.push(id);
+      return id;
+    };
 
     let i = 0;
-
-    const t1 = setTimeout(() => {
+    schedule(() => {
       setCallState("Live");
       setIsLive(true);
       playNext();
@@ -56,12 +43,12 @@ export default function AppointmentCardWidget() {
     function playNext() {
       if (i < LINES.length) {
         setTyping(true);
-        setTimeout(() => {
+        schedule(() => {
           setTyping(false);
           setVisible((prev) => [...prev, LINES[i]]);
-          i++;
-          setTimeout(playNext, 1000);
-        }, 900);
+          i += 1;
+          schedule(playNext, 900);
+        }, 700);
       } else {
         setCallState("Booking confirmed");
         setIsLive(false);
@@ -69,7 +56,14 @@ export default function AppointmentCardWidget() {
       }
     }
 
-    return () => clearTimeout(t1);
+    return () => {
+      cancelled = true;
+      timeoutIds.forEach(clearTimeout);
+      setVisible([]);
+      setTyping(false);
+      setConfirmed(false);
+      setCallState("Connecting…");
+    };
   }, []);
 
   const mm = String(Math.floor(seconds / 60)).padStart(2, "0");
@@ -112,8 +106,9 @@ export default function AppointmentCardWidget() {
         <span className="appointment-widget__lang">Mandarin</span>
       </div>
 
+      {/* Chat area */}
       <div className="appointment-widget__chat">
-        {visibleLines.map((line, idx) => (
+        {visibleLines.filter(Boolean).map((line, idx) => (
           <div
             key={idx}
             className={`appointment-widget__bubble ${

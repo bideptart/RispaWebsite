@@ -1,3 +1,6 @@
+import { useRef, useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
+
 const links = [
   { id: 'features',   label: 'Features',   href: '/features' },
   { id: 'industries', label: 'Industries', href: '/industries' },
@@ -6,38 +9,74 @@ const links = [
   { id: 'faq',        label: 'FAQ',        href: '/faq' },
 ]
 
-function NavLinks({ activePage, onClick, onNavigate }) {
-  const handleClick = (event, link) => {
-    event.preventDefault()
+function NavLinks({ activePage, onNavigate }) {
+  const tabsRef = useRef([])
+  const [position, setPosition] = useState({ left: 0, width: 0, opacity: 0 })
 
-    if (typeof onClick === 'function') {
-      onClick()
+  const activeIndex = links.findIndex((link) => link.id === activePage)
+
+  useEffect(() => {
+    const activeTab = tabsRef.current[activeIndex]
+    if (activeTab) {
+      setPosition({
+        left: activeTab.offsetLeft,
+        width: activeTab.getBoundingClientRect().width,
+        opacity: activeIndex >= 0 ? 1 : 0,
+      })
+    } else {
+      setPosition((prev) => ({ ...prev, opacity: 0 }))
     }
+  }, [activeIndex])
 
-    if (typeof onNavigate === 'function') {
-      onNavigate(link.id)
+  const resetToActive = () => {
+    const activeTab = tabsRef.current[activeIndex]
+    if (activeTab) {
+      setPosition({
+        left: activeTab.offsetLeft,
+        width: activeTab.getBoundingClientRect().width,
+        opacity: activeIndex >= 0 ? 1 : 0,
+      })
+    } else {
+      setPosition((prev) => ({ ...prev, opacity: 0 }))
     }
   }
 
+  const handleClick = (e, id) => {
+    e.preventDefault()
+    onNavigate(id)
+  }
+
+  const handleHover = (index) => {
+    const tab = tabsRef.current[index]
+    if (!tab) return
+    setPosition({
+      left: tab.offsetLeft,
+      width: tab.getBoundingClientRect().width,
+      opacity: 1,
+    })
+  }
+
   return (
-    <>
-      {links.map((link) => (
-        <a
+    <ul className="slide-tabs" onMouseLeave={resetToActive}>
+      {links.map((link, index) => (
+        <li
           key={link.id}
-          href={link.href}
-          className={activePage === link.id ? 'active' : ''}
-          onClick={(event) => handleClick(event, link)}
-          style={{
-            color: activePage === link.id ? '#21897e' : '#59716d',
-            fontWeight: activePage === link.id ? '700' : '500',
-            fontSize: '16px',
-            transition: 'color 0.2s ease',
-          }}
+          ref={(el) => (tabsRef.current[index] = el)}
+          className="slide-tabs__tab"
+          onMouseEnter={() => handleHover(index)}
+          onClick={(e) => handleClick(e, link.id)}
         >
-          {link.label}
-        </a>
+          <a href={link.href} className={activePage === link.id ? 'active' : ''} onClick={(e) => e.preventDefault()}>
+            {link.label}
+          </a>
+        </li>
       ))}
-    </>
+      <motion.li
+        className="slide-tabs__cursor"
+        animate={position}
+        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+      />
+    </ul>
   )
 }
 

@@ -3,6 +3,7 @@ import Badge from '../components/Badge'
 import Button from '../components/Button'
 import IndustriesHeroVisual from '../components/Industries/IndustriesHeroVisual'
 import Industries from '../components/Industries/Industries'
+import UseCases from '../components/UseCases/UseCases'
 import CTA from '../components/CTA/CTA'
 
 function IndustriesPage({ onNavigate }) {
@@ -35,6 +36,8 @@ function IndustriesPage({ onNavigate }) {
           </div>
         </Container>
       </section>
+
+      <UseCases />
 
       <Industries />
 

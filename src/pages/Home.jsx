@@ -1,18 +1,22 @@
 import Hero from '../components/Hero/Hero'
-import Features from '../components/Features/Features'
-import Industries from '../components/Industries/Industries'
-import Pricing from '../components/Pricing/Pricing'
-import FAQ from '../components/FAQ/FAQ'
+import CallFlow from '../components/CallFlow/CallFlow'
+import HowItWorks from '../components/HowItWorks/HowItWorks'
+import Comparison from '../components/Comparison/Comparison'
+import ROICalculator from '../components/ROICalculator/ROICalculator'
+import Integrations from '../components/Integrations/Integrations'
+import Testimonials from '../components/Testimonials/Testimonials'
 import CTA from '../components/CTA/CTA'
 
 function Home({ onNavigate }) {
   return (
     <>
       <Hero onNavigate={onNavigate} />
-      <Features />
-      <Industries />
-      <Pricing />
-      <FAQ />
+      <CallFlow />
+      <HowItWorks />
+      <Comparison />
+      <ROICalculator />
+      <Integrations />
+      <Testimonials/>
       <CTA onNavigate={onNavigate} />
     </>
   )

@@ -1,6 +1,8 @@
+import SpotlightCard from './SpotlightCard'
+
 function StepCard({ step, title, description, points }) {
   return (
-    <article className="step-card">
+    <SpotlightCard className="step-card">
       <span className="step-card__number">{step}</span>
       <h3>{title}</h3>
       <p>{description}</p>
@@ -11,7 +13,7 @@ function StepCard({ step, title, description, points }) {
           ))}
         </ul>
       )}
-    </article>
+    </SpotlightCard>
   )
 }
 
