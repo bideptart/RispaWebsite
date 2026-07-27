@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 const links = [
   { id: 'features',   label: 'Features',   href: '/features' },
   { id: 'industries', label: 'Industries', href: '/industries' },
@@ -10,11 +12,9 @@ function NavLinks({ activePage, onClick }) {
   return (
     <>
       {links.map((link) => (
-        <a
+        <Link
           key={link.id}
-          href={link.href}
-          target="_blank"
-          rel="noopener noreferrer"
+          to={link.href}
           className={activePage === link.id ? 'active' : ''}
           onClick={onClick}
           style={{
@@ -25,7 +25,7 @@ function NavLinks({ activePage, onClick }) {
           }}
         >
           {link.label}
-        </a>
+        </Link>
       ))}
     </>
   )

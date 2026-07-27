@@ -49,7 +49,6 @@ function AppInner() {
       navigate(route)
       return
     }
-    // Section scroll (e.g. 'cta', 'how-it-works')
     if (!isHome) {
       navigate('/')
       setTimeout(() => {
@@ -68,14 +67,10 @@ function AppInner() {
     <>
       <ScrollToTop />
       <Routes>
-
-        {/* Sign-in — no shared layout */}
         <Route
           path="/sign-in"
           element={<SignInPage onNavigate={handleNavigate} />}
         />
-
-        {/* Every other page uses MainLayout — FLAT routes, no nesting */}
         <Route
           path="/"
           element={
@@ -124,8 +119,6 @@ function AppInner() {
             </MainLayout>
           }
         />
-
-        {/* Catch-all → home */}
         <Route
           path="*"
           element={
@@ -134,7 +127,6 @@ function AppInner() {
             </MainLayout>
           }
         />
-
       </Routes>
     </>
   )
