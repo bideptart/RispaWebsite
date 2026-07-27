@@ -1,7 +1,7 @@
 import Container from '../components/Container'
 import Badge from '../components/Badge'
 import Button from '../components/Button'
-import IndustriesHeroVisual from '../components/Industries/IndustriesHeroVisual'
+import AnimatedHubGraphic from '../components/Industries/AnimatedHubGraphic'
 import Industries from '../components/Industries/Industries'
 import UseCases from '../components/UseCases/UseCases'
 import CTA from '../components/CTA/CTA'
@@ -32,7 +32,7 @@ function IndustriesPage({ onNavigate }) {
           </div>
 
           <div className="industries-hero__visual">
-            <IndustriesHeroVisual />
+            <AnimatedHubGraphic />
           </div>
         </Container>
       </section>
