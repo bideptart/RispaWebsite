@@ -24,7 +24,7 @@ function Navbar({ activePage, onNavigate }) {
           </a>
 
           <nav className="navbar__links">
-            <NavLinks activePage={activePage} />
+            <NavLinks activePage={activePage} onNavigate={onNavigate} />
           </nav>
 
           <div className="navbar__actions">
