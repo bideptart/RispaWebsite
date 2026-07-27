@@ -67,9 +67,9 @@ function Features() {
           }
           description="Rispa.ai skips the brittle speech-to-text and text-to-speech relay and runs on a single audio-native engine — so your callers hear pauses, emotion, and timing that feel right."
         />
-        
+
         <Stats />
-        
+
         <div className="features-slider">
           <div className="slider-indicator">
             <span className="slider-badge">
@@ -80,17 +80,31 @@ function Features() {
           <AnimatePresence mode="wait">
             <motion.div
               key={activeIndex}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4 }}
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -100 }}
+              transition={{ duration: 0.5, ease: 'easeInOut' }}
               className="feature-slider-content"
             >
               <div className="feature-illustration">
                 <div className="illustration-card">
-                  <div className="illustration-icon-wrapper">
-                    <span className="illustration-icon">{activeFeature.icon}</span>
-                  </div>
+                  {activeFeature.image ? (
+                    <img 
+                      src={activeFeature.image} 
+                      alt={activeFeature.title}
+                      className="feature-image"
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        borderRadius: '12px'
+                      }}
+                    />
+                  ) : (
+                    <div className="illustration-icon-wrapper">
+                      <span className="illustration-icon">{activeFeature.icon}</span>
+                    </div>
+                  )}
                 </div>
               </div>
 

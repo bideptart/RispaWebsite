@@ -3,6 +3,7 @@ import Badge from '../components/Badge'
 import Button from '../components/Button'
 import FeaturesHeroVisual from '../components/Features/FeaturesHeroVisual'
 import Features from '../components/Features/Features'
+import IntegrationsCarousel from '../components/Features/IntegrationsCarousel'
 import CTA from '../components/CTA/CTA'
 
 function FeaturesPage({ onNavigate }) {
@@ -13,7 +14,7 @@ function FeaturesPage({ onNavigate }) {
           <div className="features-hero__copy">
             <Badge>• FEATURES</Badge>
             <h1 className="features-hero__title">
-              Everything your voice agent needs.
+              <span className="highlighted-text">Everything</span> your voice agent needs.
             </h1>
             <p className="features-hero__subtitle">
               From setup to billing — every tool your Rispa.ai AI voice agent needs, built for fast enterprise growth and seamless customer engagement.
@@ -41,6 +42,23 @@ function FeaturesPage({ onNavigate }) {
             <FeaturesHeroVisual />
           </div>
         </Container>
+      </section>
+
+      <section className="section">
+        <Container>
+          <div className="section-title section-title--center">
+            <Badge>🔗 INTEGRATIONS</Badge>
+            <h2>
+              Plugs into what you<br />
+              <span className="highlighted-text">already use.</span>
+            </h2>
+            <p>
+              Calendars, messaging, and automation — connected out of the box, no engineering required.
+            </p>
+          </div>
+        </Container>
+        
+        <IntegrationsCarousel />
       </section>
 
       <Features />

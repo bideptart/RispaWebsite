@@ -6,7 +6,7 @@ function MobileMenu({ open, onClose, activePage, onNavigate }) {
     <div className={`mobile-menu ${open ? 'is-open' : ''}`}>
       <div className="mobile-menu__panel">
         <nav className="mobile-menu__links">
-          <NavLinks activePage={activePage} onClick={onClose} />
+          <NavLinks activePage={activePage} onClick={onClose} onNavigate={onNavigate} />
         </nav>
         <Button 
           as="a" 
