@@ -8,20 +8,27 @@ import { blogPosts, blogCategories } from '../data/blog'
 function BlogCard({ post }) {
   return (
     <article className="blog-card">
-      <div className="blog-card__meta">
-        <span className="blog-card__category">{post.category}</span>
-        <span className="blog-card__dot" aria-hidden="true" />
-        <span className="blog-card__read-time">{post.readTime}</span>
-        <span className="blog-card__dot" aria-hidden="true" />
-        <span className="blog-card__date">{post.date}</span>
-      </div>
-      <h3 className="blog-card__title">{post.title}</h3>
-      <p className="blog-card__excerpt">{post.excerpt}</p>
-      <div className="blog-card__footer">
-        <span className="blog-card__author">{post.author}</span>
-        <a href={`/blog/${post.slug}`} className="blog-card__link" aria-label={`Read ${post.title}`}>
-          Read more →
-        </a>
+      {post.cover && (
+        <div className="blog-card__cover">
+          <img src={post.cover} alt={post.title} loading="lazy" />
+        </div>
+      )}
+      <div className="blog-card__body">
+        <div className="blog-card__meta">
+          <span className="blog-card__category">{post.category}</span>
+          <span className="blog-card__dot" aria-hidden="true" />
+          <span className="blog-card__read-time">{post.readTime}</span>
+          <span className="blog-card__dot" aria-hidden="true" />
+          <span className="blog-card__date">{post.date}</span>
+        </div>
+        <h3 className="blog-card__title">{post.title}</h3>
+        <p className="blog-card__excerpt">{post.excerpt}</p>
+        <div className="blog-card__footer">
+          <span className="blog-card__author">{post.author}</span>
+          <a href={`/blog/${post.slug}`} className="blog-card__link" aria-label={`Read ${post.title}`}>
+            Read more →
+          </a>
+        </div>
       </div>
     </article>
   )

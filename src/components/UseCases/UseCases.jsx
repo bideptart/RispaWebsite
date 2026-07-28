@@ -11,7 +11,7 @@ const useCaseCards = [
     title: 'Smart Routing',
     description: 'Automatically routes calls based on customer intent to the right team without unnecessary transfers.',
     link: 'Explore Smart Routing',
-    accent: '#5fd0c8',
+    accent: '#21897e',
   },
   {
     Icon: Mic,
@@ -19,7 +19,7 @@ const useCaseCards = [
     title: 'Call Recording',
     description: 'Record, transcribe, and search conversations with secure PII protection built in at every step.',
     link: 'Explore Call Recording',
-    accent: '#5fd0c8',
+    accent: '#0284c7',
   },
   {
     Icon: Inbox,
@@ -27,7 +27,7 @@ const useCaseCards = [
     title: 'Omnichannel Inbox',
     description: 'Manage voice, SMS, WhatsApp, chat, and email conversations in one shared workspace.',
     link: 'Explore Omnichannel Inbox',
-    accent: '#f6a734',
+    accent: '#d97706',
   },
   {
     Icon: Database,
@@ -35,7 +35,7 @@ const useCaseCards = [
     title: 'CRM Integrations',
     description: 'Connect with HubSpot, Salesforce, Zoho, Zendesk, Freshdesk, and more — no custom dev.',
     link: 'Explore Integrations',
-    accent: '#a78bfa',
+    accent: '#7c3aed',
   },
   {
     Icon: BarChart2,
@@ -43,7 +43,7 @@ const useCaseCards = [
     title: 'Live Analytics',
     description: 'Monitor CSAT, SLA, call activity, and agent performance with real-time reporting.',
     link: 'Explore Live Analytics',
-    accent: '#f87171',
+    accent: '#db2777',
   },
 ]
 
