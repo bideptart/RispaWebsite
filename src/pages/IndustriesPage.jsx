@@ -2,7 +2,6 @@ import Container from '../components/Container'
 import Badge from '../components/Badge'
 import Button from '../components/Button'
 import RispaCommsMockup from '../components/Industries/RispaCommsMockup'
-import HowItWorks from '../components/HowItWorks/HowItWorks'
 import Industries from '../components/Industries/Industries'
 import UseCases from '../components/UseCases/UseCases'
 import CTA from '../components/CTA/CTA'
@@ -38,16 +37,11 @@ function IndustriesPage({ onNavigate }) {
               </Button>
             </div>
           </div>
-
-          {/* Replaced AnimatedHubGraphic with Rispa comms mockup */}
           <div className="industries-hero__visual">
             <RispaCommsMockup />
           </div>
         </Container>
       </section>
-
-      {/* How it works — moved here from Home, cards flip on click */}
-      <HowItWorks flippable />
 
       <UseCases />
 

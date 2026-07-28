@@ -149,18 +149,13 @@ textarea {
   color: var(--accent-dark);
 }
 
-/* Two-column section header: badge+title left, description right - Enhanced Design */
+/* Two-column section header: badge+title left, description right */
 .section-title-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  gap: 2.5rem;
   align-items: center;
-  margin-bottom: 3.5rem;
-  padding: 2.5rem;
-  background: linear-gradient(135deg, rgba(33, 137, 126, 0.04) 0%, rgba(255, 255, 255, 0.95) 100%);
-  border-radius: 24px;
-  border: 1px solid rgba(33, 137, 126, 0.12);
-  box-shadow: 0 8px 32px rgba(13, 36, 34, 0.06);
+  margin-bottom: 2.5rem;
 }
 
 .section-title-row__left {
@@ -5321,7 +5316,7 @@ textarea {
   width: 160px;
   height: 160px;
   border-radius: 50%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--ds-accent, #21897e) 12%, transparent) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(33, 137, 126, 0.1) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -5331,7 +5326,7 @@ textarea {
   border-radius: 12px;
   background: rgba(33, 137, 126, 0.08);
   border: 1px solid rgba(33, 137, 126, 0.18);
-  color: var(--ds-accent, #21897e);
+  color: var(--accent-dark);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -5350,9 +5345,9 @@ textarea {
   letter-spacing: 0.04em;
   padding: 0.2rem 0.6rem;
   border-radius: 999px;
-  background: color-mix(in srgb, var(--ds-accent, #21897e) 10%, transparent);
-  color: var(--ds-accent, #21897e);
-  border: 1px solid color-mix(in srgb, var(--ds-accent, #21897e) 20%, transparent);
+  background: rgba(33, 137, 126, 0.08);
+  color: var(--accent-dark);
+  border: 1px solid rgba(33, 137, 126, 0.18);
 }
 
 .uc-card-ds__title {
@@ -5376,6 +5371,7 @@ textarea {
 .uc-card-ds__link {
   font-size: 0.82rem;
   font-weight: 700;
+  color: var(--accent);
   text-decoration: none;
   cursor: pointer;
   transition: opacity 0.2s ease;
@@ -5401,7 +5397,7 @@ textarea {
 .step-flip {
   perspective: 900px;
   cursor: pointer;
-  height: 280px;
+  height: 300px;
 }
 
 .step-flip__inner {
@@ -5430,21 +5426,23 @@ textarea {
   overflow: hidden;
 }
 
-/* Front: same deep-sea style as step-card-v2 */
+/* Front: light website-color card (same as step-card-v2) */
 .step-flip__front {
-  background: #0d2422;
-  border: 1px solid rgba(33, 137, 126, 0.25);
+  background: #ffffff;
+  border: 1px solid rgba(215, 231, 227, 0.9);
+  box-shadow: 0 4px 20px -8px rgba(13, 36, 34, 0.08);
 }
 
 .step-flip--active .step-flip__front {
   border-color: var(--accent);
-  box-shadow: 0 0 0 1px var(--accent);
+  box-shadow: 0 0 0 1px var(--accent), 0 12px 32px -12px rgba(33, 137, 126, 0.2);
 }
 
 .step-flip__hint {
   margin-top: auto;
   font-size: 0.7rem;
-  color: rgba(232, 245, 243, 0.35);
+  color: var(--text-soft);
+  opacity: 0.5;
   letter-spacing: 0.04em;
 }
 
