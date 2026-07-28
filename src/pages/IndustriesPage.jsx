@@ -1,10 +1,12 @@
 import Container from '../components/Container'
 import Badge from '../components/Badge'
 import Button from '../components/Button'
-import RispaCommsMockup from '../components/Industries/RispaCommsMockup'
-import Industries from '../components/Industries/Industries'
+import LiveBoard from '../components/Industries/LiveBoard'
+import DayTimeline from '../components/Industries/DayTimeline'
 import UseCases from '../components/UseCases/UseCases'
+import CallDemo from '../components/Industries/CallDemo'
 import CTA from '../components/CTA/CTA'
+import '../components/Industries/day-timeline.css'
 
 function IndustriesPage({ onNavigate }) {
   return (
@@ -38,15 +40,16 @@ function IndustriesPage({ onNavigate }) {
             </div>
           </div>
           <div className="industries-hero__visual">
-            <RispaCommsMockup />
+            <LiveBoard />
           </div>
         </Container>
       </section>
 
       <UseCases />
 
-      <Industries />
+      <DayTimeline />
 
+      <CallDemo/ >
       <CTA onNavigate={onNavigate} variant="features" />
     </div>
   )

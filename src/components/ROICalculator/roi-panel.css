@@ -1,0 +1,207 @@
+.roi-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.roi-copy { display: grid; justify-items: start; gap: 1rem; }
+
+.roi-copy__title {
+  font-size: clamp(1.8rem, 3.4vw, 2.7rem);
+  letter-spacing: -0.04em;
+  line-height: 1.12;
+  margin: 0;
+  max-width: 14ch;
+}
+
+.roi-copy__sub { margin: 0; color: var(--text-soft); font-size: 1.02rem; line-height: 1.7; }
+
+.roi-copy__list { list-style: none; margin: 0.35rem 0 0; padding: 0; display: grid; gap: 0.65rem; }
+
+.roi-copy__list li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.94rem;
+  color: var(--text-soft);
+}
+
+.roi-copy__list svg { flex: 0 0 auto; color: var(--accent); }
+
+.roi-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  padding: 1.75rem;
+  display: grid;
+  gap: 1.35rem;
+}
+
+.roi-field { display: grid; gap: 0.6rem; }
+
+.roi-label {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+.roi-val {
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.roi-field input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 6px;
+  background: linear-gradient(
+    to right,
+    var(--accent) 0 var(--p, 50%),
+    rgba(215, 231, 227, 0.9) var(--p, 50%) 100%
+  );
+  cursor: pointer;
+}
+
+.roi-field input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 3px solid var(--accent);
+  box-shadow: 0 2px 8px -2px rgba(13, 36, 34, 0.4);
+  transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.roi-field input[type='range']::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 3px solid var(--accent);
+  box-shadow: 0 2px 8px -2px rgba(13, 36, 34, 0.4);
+}
+
+.roi-field input[type='range']:hover::-webkit-slider-thumb { transform: scale(1.15); }
+.roi-field input[type='range']:active::-webkit-slider-thumb { transform: scale(1.05); }
+.roi-field input[type='range']:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+.roi-ends {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.68rem;
+  color: var(--text-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+.roi-headline {
+  padding: 1.25rem 1.35rem;
+  border-radius: var(--radius-md);
+  background: #1c524a;
+  color: #f2faf8;
+}
+
+.roi-headline__label {
+  margin: 0 0 0.4rem;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(242, 250, 248, 0.62);
+}
+
+.roi-headline__value {
+  display: flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  margin: 0 0 0.9rem;
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.roi-cur { font-size: 0.55em; color: rgba(242, 250, 248, 0.7); }
+
+.roi-bar {
+  height: 4px;
+  border-radius: 4px;
+  background: rgba(242, 250, 248, 0.16);
+  overflow: hidden;
+}
+
+.roi-bar span {
+  display: block;
+  height: 100%;
+  border-radius: 4px;
+  background: #6fe0c9;
+  transition: width 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.roi-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; margin: 0; padding: 0; }
+
+.roi-stat {
+  padding: 0.9rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface-soft);
+}
+
+.roi-stat dt {
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--accent-dark);
+  font-variant-numeric: tabular-nums;
+}
+
+.roi-stat dd {
+  margin: 0.4rem 0 0;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  line-height: 1.35;
+}
+
+.roi-note {
+  margin: 0;
+  font-size: 0.74rem;
+  line-height: 1.55;
+  color: var(--text-soft);
+  padding-top: 0.2rem;
+}
+
+@media (max-width: 900px) {
+  .roi-grid { grid-template-columns: 1fr; gap: 2rem; align-items: start; }
+  .roi-copy__title { max-width: none; }
+  .roi-panel { padding: 1.25rem 1.15rem; gap: 1.15rem; }
+  .roi-stats { gap: 0.45rem; }
+  .roi-stat { padding: 0.75rem 0.6rem; }
+  .roi-stat dt { font-size: 1.1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .roi-bar span { transition: none; }
+  .roi-field input[type='range']::-webkit-slider-thumb { transition: none; }
+}

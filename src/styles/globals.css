@@ -5923,3 +5923,123 @@ textarea {
   color: #ffffff;
   font-weight: 700;
 }
+
+.day-timeline {
+  position: relative;
+  margin-top: 56px;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px 0;
+}
+
+.day-timeline__line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(33, 137, 126, 0.2);
+  transform: translateX(-50%);
+}
+
+.day-timeline__item {
+  position: relative;
+  width: 50%;
+  padding: 0 40px 48px;
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.day-timeline__item--left {
+  left: 0;
+  transform: translateX(-24px);
+}
+
+.day-timeline__item--right {
+  left: 50%;
+  transform: translateX(24px);
+}
+
+.day-timeline__item--visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.day-timeline__dot {
+  position: absolute;
+  top: 8px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #21897e;
+  border: 3px solid #ffffff;
+  box-shadow: 0 0 0 2px rgba(33, 137, 126, 0.3);
+}
+
+.day-timeline__item--left .day-timeline__dot {
+  right: -7px;
+}
+
+.day-timeline__item--right .day-timeline__dot {
+  left: -7px;
+}
+
+.day-timeline__card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px 22px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 12px 30px -18px rgba(13, 36, 34, 0.15);
+}
+
+.day-timeline__time {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #21897e;
+  background: rgba(33, 137, 126, 0.1);
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+}
+
+.day-timeline__icon {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+.day-timeline__card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f2b27;
+  margin-bottom: 6px;
+}
+
+.day-timeline__card p {
+  font-size: 13.5px;
+  color: #59716d;
+  line-height: 1.5;
+}
+
+@media (max-width: 700px) {
+  .day-timeline__line {
+    left: 20px;
+  }
+
+  .day-timeline__item,
+  .day-timeline__item--left,
+  .day-timeline__item--right {
+    width: 100%;
+    left: 0;
+    padding-left: 48px;
+    padding-right: 0;
+    transform: translateX(0);
+  }
+
+  .day-timeline__item--left .day-timeline__dot,
+  .day-timeline__item--right .day-timeline__dot {
+    left: 13px;
+    right: auto;
+  }
+}

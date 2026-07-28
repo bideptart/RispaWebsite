@@ -4,6 +4,7 @@ import Badge from '../components/Badge'
 import Button from '../components/Button'
 import CTA from '../components/CTA/CTA'
 import { blogPosts, blogCategories } from '../data/blog'
+import FeaturedPost from '../components/Blog/FeaturedPost'
 
 function BlogCard({ post }) {
   return (
@@ -67,6 +68,8 @@ function BlogPage({ onNavigate }) {
 
       <section className="section blog-posts-section" id="blog-posts">
         <Container>
+          <FeaturedPost />
+
           <div className="blog-filter">
             {blogCategories.map((cat) => (
               <button

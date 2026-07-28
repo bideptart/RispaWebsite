@@ -1,51 +1,72 @@
 import { motion } from 'framer-motion'
 
 function IndustriesHeroVisual() {
-  const languages = [
-    { text: 'नमस्ते', x: -90, y: -70 },
-    { text: 'வணக்கம்', x: 100, y: -40 },
-    { text: 'Hello · నమస్తే', x: 20, y: 100 },
-    { text: 'Hola · Bonjour', x: -100, y: 50 }
-  ]
-
   return (
-    <div className="industries-visual-container">
-      {/* Background Orbit Radar Grid */}
-      <div className="radar-grid"></div>
-      <div className="radar-circle radar-circle--outer"></div>
-      <div className="radar-circle radar-circle--inner"></div>
-
-      {/* Central Pulsing Audio Core */}
-      <motion.div 
-        className="central-voice-core"
-        animate={{ scale: [1, 1.06, 1] }}
-        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-      >
-        <div className="core-bars">
-          <span></span><span></span><span></span><span></span><span></span>
+    <motion.div
+      className="dashboard-mockup"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+    >
+      <div className="dashboard-mockup__header">
+        <div className="dashboard-mockup__brand">
+          <div className="dashboard-mockup__logo">
+            <span></span><span></span><span></span><span></span>
+          </div>
+          <div>
+            <div className="dashboard-mockup__name">Rispa</div>
+            <div className="dashboard-mockup__subtitle">UNIFIED COMMUNICATIONS</div>
+          </div>
         </div>
-      </motion.div>
+        <span className="dashboard-mockup__badge">
+          <span className="dashboard-mockup__dot"></span> AI-Enhanced · All Channels
+        </span>
+      </div>
 
-      {/* Orbiting Language Chips */}
-      {languages.map((lang, index) => (
-        <motion.div
-          key={lang.text}
-          className="orbit-lang-chip"
-          style={{ x: lang.x, y: lang.y }}
-          animate={{
-            y: [lang.y - 6, lang.y + 6, lang.y - 6]
-          }}
-          transition={{
-            duration: 3 + index * 0.5,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        >
-          <span className="lang-node-dot"></span>
-          <span>{lang.text}</span>
-        </motion.div>
-      ))}
-    </div>
+      <div className="dashboard-mockup__tabs">
+        <span className="dashboard-mockup__tab dashboard-mockup__tab--active">📞 Voice</span>
+        <span className="dashboard-mockup__tab">💬 SMS &amp; MMS</span>
+        <span className="dashboard-mockup__tab">👥 Team Chat</span>
+      </div>
+
+      <div className="dashboard-mockup__row">
+        <div className="dashboard-mockup__row-left">
+          <span className="dashboard-mockup__icon">📞</span>
+          <div>
+            <div className="dashboard-mockup__row-title">Voice</div>
+            <div className="dashboard-mockup__row-sub">1.2M min / day</div>
+          </div>
+        </div>
+        <span className="dashboard-mockup__tier">Tier-1</span>
+      </div>
+
+      <div className="dashboard-mockup__chat">
+        <div className="dashboard-mockup__chat-label">AI RECEPTIONIST</div>
+        <div className="dashboard-mockup__chat-bubble">Good morning! How can I help?</div>
+        <div className="dashboard-mockup__chat-dots">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+
+      <div className="dashboard-mockup__stats">
+        <div className="dashboard-mockup__stat">
+          <div className="dashboard-mockup__stat-value">99.999%</div>
+          <div className="dashboard-mockup__stat-label">Uptime SLA</div>
+        </div>
+        <div className="dashboard-mockup__stat">
+          <div className="dashboard-mockup__stat-value">150+</div>
+          <div className="dashboard-mockup__stat-label">Countries</div>
+        </div>
+        <div className="dashboard-mockup__stat">
+          <div className="dashboard-mockup__stat-value">70+</div>
+          <div className="dashboard-mockup__stat-label">Global PoPs</div>
+        </div>
+        <div className="dashboard-mockup__stat">
+          <div className="dashboard-mockup__stat-value">4</div>
+          <div className="dashboard-mockup__stat-label">Channels · One Platform</div>
+        </div>
+      </div>
+    </motion.div>
   )
 }
 

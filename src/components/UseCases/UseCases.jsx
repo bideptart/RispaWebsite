@@ -1,8 +1,10 @@
+import { useEffect, useRef } from 'react'
 import Container from '../Container'
 import Badge from '../Badge'
 import {
   GitBranch, Mic, Inbox, Database, BarChart2, Shield,
 } from 'lucide-react'
+import './use-cases-motion.css'
 
 const useCaseCards = [
   {
@@ -42,11 +44,29 @@ const useCaseCards = [
   },
 ]
 
-function UseCaseCard({ card, wide }) {
+const BARS = Array.from({ length: 30 }, (_, i) => 3 + Math.round(Math.abs(Math.sin(i * 1.7)) * 15))
+
+function trackPointer(e) {
+  const el = e.currentTarget
+  const r = el.getBoundingClientRect()
+  el.style.setProperty('--mx', (e.clientX - r.left) + 'px')
+  el.style.setProperty('--my', (e.clientY - r.top) + 'px')
+}
+
+function UseCaseCard({ card, wide, index }) {
   const { Icon, tags, title, description, link } = card
   return (
-    <article className={`uc-card-ds ${wide ? 'uc-card-ds--wide' : ''}`}>
+    <article
+      className={`uc-card-ds ${wide ? 'uc-card-ds--wide' : ''}`}
+      style={{ '--i': index }}
+      onMouseMove={trackPointer}
+    >
       <div className="uc-card-ds__glow" />
+      <div className="uc-wave" aria-hidden="true">
+        {BARS.map((h, b) => (
+          <span key={b} style={{ '--h': h + 'px', '--b': b }} />
+        ))}
+      </div>
       <div className="uc-card-ds__icon">
         <Icon size={20} strokeWidth={1.8} />
       </div>
@@ -57,14 +77,37 @@ function UseCaseCard({ card, wide }) {
       </div>
       <h3 className="uc-card-ds__title">{title}</h3>
       <p className="uc-card-ds__desc">{description}</p>
-      <a className="uc-card-ds__link">{link} →</a>
+      <a className="uc-card-ds__link">
+        {link}
+        <span className="uc-card-ds__arrow">&rarr;</span>
+      </a>
     </article>
   )
 }
 
 function UseCases() {
+  const rootRef = useRef(null)
+
+  useEffect(() => {
+    const root = rootRef.current
+    const cards = root.querySelectorAll('.uc-card-ds')
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    root.classList.add('uc-anim')
+    const io = new IntersectionObserver(reveal, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' })
+    cards.forEach((c) => io.observe(c))
+    return () => io.disconnect()
+  }, [])
+
+  function reveal(entries, io) {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return
+      entry.target.classList.add('is-in')
+      io.unobserve(entry.target)
+    })
+  }
+
   return (
-    <section className="section" id="use-cases">
+    <section className="section" id="use-cases" ref={rootRef}>
       <Container>
         <div className="section-title-row" style={{ marginBottom: '2.5rem' }}>
           <div className="section-title-row__left">
@@ -84,15 +127,15 @@ function UseCases() {
 
         {/* Top row: 2 wide cards */}
         <div className="uc-grid-top">
-          {useCaseCards.slice(0, 2).map(card => (
-            <UseCaseCard key={card.title} card={card} wide />
+          {useCaseCards.slice(0, 2).map((card, i) => (
+            <UseCaseCard key={card.title} card={card} index={i} wide />
           ))}
         </div>
 
         {/* Bottom row: 3 cards */}
         <div className="uc-grid-bottom">
-          {useCaseCards.slice(2).map(card => (
-            <UseCaseCard key={card.title} card={card} />
+          {useCaseCards.slice(2).map((card, i) => (
+            <UseCaseCard key={card.title} card={card} index={i} />
           ))}
         </div>
       </Container>

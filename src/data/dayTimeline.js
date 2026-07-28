@@ -1,0 +1,91 @@
+export const officeHours = { open: 9 * 60, close: 19 * 60 }
+
+export const daySummary = [
+  { value: 412, label: 'Calls answered' },
+  { value: 157, label: 'Outside office hours' },
+  { value: 0, label: 'Missed' },
+]
+
+export const dayEvents = [
+  {
+    min: 138,
+    time: '02:18',
+    urgent: true,
+    industry: 'Healthcare',
+    caller: 'Chest pain, caller in distress',
+    title: 'Nine seconds to the on-call doctor.',
+    detail: 'The agent heard the symptom, dropped the script, and dialled the on-call number instead of taking a message. The clinic found out it happened when they opened at nine.',
+  },
+  {
+    min: 340,
+    time: '05:40',
+    industry: 'Logistics',
+    caller: 'Driver, Bhiwandi hub',
+    title: 'Wrong address, fixed before dispatch opened.',
+    detail: 'Driver called about a pin that pointed to an empty plot. The agent reached the consignee, confirmed the landmark, and updated the manifest. Nobody at the hub was awake yet.',
+  },
+  {
+    min: 455,
+    time: '07:35',
+    industry: 'Real estate',
+    caller: 'NRI buyer, Toronto',
+    title: 'A ₹2.4 crore enquiry, taken at 10pm his time.',
+    detail: 'He had thirty minutes before bed and three developers to call. Ours picked up first. Budget, possession date and Powai preference were on the sales head’s desk before breakfast.',
+  },
+  {
+    min: 552,
+    time: '09:12',
+    industry: 'Healthcare',
+    caller: 'Existing patient',
+    title: 'Moved an appointment without troubling anyone.',
+    detail: 'Thursday to Saturday, confirmed on WhatsApp in under a minute. Reception was checking in a queue of eleven people and never touched the phone.',
+  },
+  {
+    min: 694,
+    time: '11:34',
+    industry: 'E-commerce',
+    caller: 'Six callers at once',
+    title: 'Sale day peak, nobody heard a busy tone.',
+    detail: 'Four order-status queries closed end to end, two escalated to the returns team. Average pickup across all six: eleven seconds. Last year this hour produced nineteen abandoned calls.',
+  },
+  {
+    min: 805,
+    time: '13:25',
+    industry: 'Education',
+    caller: 'Parent, second call this week',
+    title: 'Fee question answered while the office ate lunch.',
+    detail: 'Asked whether the second instalment could move to July. The agent pulled the policy from the uploaded fee circular, gave the exact date, and sent the payment link on WhatsApp.',
+  },
+  {
+    min: 965,
+    time: '16:05',
+    industry: 'Real estate',
+    caller: 'Portal lead, 99acres',
+    title: 'Called back in thirty-eight seconds.',
+    detail: 'The form submission triggered an outbound call before the buyer had closed the tab. Qualified, and on a counsellor’s calendar for Saturday 11am.',
+  },
+  {
+    min: 1132,
+    time: '18:52',
+    industry: 'Lending',
+    caller: 'Borrower, 14 days overdue',
+    title: 'Last legal minute of the calling window.',
+    detail: 'RBI allows recovery calls until 7pm. The agent dialled at 18:52 in Marathi, offered a part-payment option, and logged the full recording. At 19:00 it stopped dialling on its own.',
+  },
+  {
+    min: 1290,
+    time: '21:30',
+    industry: 'Hospitality',
+    caller: 'Table for eight, Saturday',
+    title: 'A booking the answering machine would have eaten.',
+    detail: 'Restaurant phone goes unattended after nine. The agent checked the covers, held the table, and texted a confirmation. Eight seats that would have gone to whoever picked up next.',
+  },
+  {
+    min: 1395,
+    time: '23:15',
+    industry: 'E-commerce',
+    caller: 'COD order, ₹6,400',
+    title: 'Confirmed before it could become an RTO.',
+    detail: 'High-value cash order flagged for verification. Customer confirmed intent and delivery window at 11pm, so the parcel shipped in the morning instead of sitting back.',
+  },
+]

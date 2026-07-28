@@ -1,0 +1,131 @@
+.cf-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: 4rem;
+  align-items: start;
+}
+
+.cf-copy {
+  position: sticky;
+  top: 8rem;
+  display: grid;
+  justify-items: start;
+  gap: 1rem;
+}
+
+.cf-copy__title {
+  font-size: clamp(1.9rem, 3.6vw, 3rem);
+  letter-spacing: -0.045em;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.cf-copy__sub {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.cf-copy__note {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.5rem 0 0;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+.cf-copy__note::after {
+  content: '';
+  width: 22px;
+  height: 1px;
+  background: var(--accent);
+  animation: cf-hint 2.2s ease-in-out infinite;
+}
+
+@keyframes cf-hint {
+  0%, 100% { transform: translateX(0); opacity: 0.4; }
+  50% { transform: translateX(7px); opacity: 1; }
+}
+
+.cf-stack { list-style: none; margin: 0; padding: 0; }
+
+.cf-card {
+  position: sticky;
+  top: calc(7rem + var(--i) * 1.6rem);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 -2px 0 0 var(--surface), var(--shadow-card);
+  padding: 2rem 2.15rem 2.25rem;
+  margin-bottom: 3.5rem;
+}
+
+.cf-card:last-child { margin-bottom: 0; }
+
+.cf-card__top {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1.35rem;
+}
+
+.cf-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 auto;
+  border-radius: 14px;
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+}
+
+.cf-card__step {
+  margin-left: auto;
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--accent-dark);
+}
+
+.cf-card__of { color: var(--text-soft); margin-left: 0.25rem; }
+
+.cf-card__title {
+  font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  margin: 0 0 0.7rem;
+}
+
+.cf-card__desc {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 1rem;
+  line-height: 1.7;
+  max-width: 46ch;
+}
+
+@media (max-width: 900px) {
+  .cf-layout { grid-template-columns: 1fr; gap: 2.25rem; }
+  .cf-copy { position: static; }
+  .cf-copy__note { display: none; }
+  .cf-card {
+    top: calc(4.5rem + var(--i) * 1.1rem);
+    padding: 1.5rem 1.4rem 1.65rem;
+    margin-bottom: 2.5rem;
+  }
+  .cf-card__top { margin-bottom: 1rem; }
+  .cf-card__icon { width: 38px; height: 38px; border-radius: 12px; }
+  .cf-card__desc { font-size: 0.95rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cf-copy__note::after { animation: none; }
+}
