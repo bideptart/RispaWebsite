@@ -5,21 +5,27 @@ import StepCard from './StepCard'
 const steps = [
   {
     step: '01',
-    title: 'Design your agent',
-    description: 'Pick a voice, write the prompt, set guardrails. Describe the agent in plain English and ship it.',
-    points: ['System prompt + personas', 'Guardrails and conversation flow', 'Plain-English agent definition'],
+    title: 'Build',
+    description: 'Write your agent\'s behavior in plain English, or start from a ready-made template. Paste your website URL to auto-import company facts and FAQs — no engineering required.',
+    points: ['Plain-English prompt editor', 'Ready-made industry templates', 'Auto-import from URL or docs'],
   },
   {
     step: '02',
-    title: 'Connect your knowledge',
-    description: 'Point the agent at your knowledge base, FAQs, or product docs. It answers from your source of truth, not a generic model.',
-    points: ['RAG over your knowledge base', 'Live document sync', 'Source citations on every answer'],
+    title: 'Evaluate',
+    description: 'Review and edit your agent\'s voice, language, and behavior any time in a simple form. Changes save and apply immediately — no redeploy needed.',
+    points: ['Live voice & language preview', 'Instant updates, no redeploy', 'Test with real call simulations'],
   },
   {
     step: '03',
-    title: 'Launch & scale',
-    description: 'Plug in your phone number, route inbound or outbound, and go live. Scale from one call to thousands without a queue.',
-    points: ['Phone number routing (inbound + outbound)', 'Real-time latency tracking', 'Self-hosted control panel'],
+    title: 'Launch',
+    description: 'Forward your existing number to Rispa or provision a new line in minutes. Go live immediately — inbound and outbound, any scale.',
+    points: ['Forward your existing number', 'Provision new lines instantly', 'Inbound + outbound from day one'],
+  },
+  {
+    step: '04',
+    title: 'Optimise',
+    description: 'Track call counts, minutes used, and average call duration in your dashboard. Fine-tune your agent\'s prompt based on real call data and transcripts.',
+    points: ['Real-time analytics dashboard', 'Full call transcripts', 'CSAT & SLA tracking'],
   },
 ]
 

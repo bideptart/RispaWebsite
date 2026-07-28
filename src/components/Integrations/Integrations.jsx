@@ -3,10 +3,10 @@ import Container from '../Container'
 import Badge from '../Badge'
 
 const FEED_ITEMS = [
-  { color: '#21897e', label: 'Call ended · 4m 22s',      tag: 'AI Summary', tagColor: '#21897e', tagBg: '#e6f5f3', source: 'Softtop' },
-  { color: '#3b82f6', label: 'Deal stage → Proposal',    tag: 'Lifecycle',  tagColor: '#3b82f6', tagBg: '#eff6ff', source: 'HubSpot' },
-  { color: '#8b5cf6', label: 'SMS sent · follow-up',     tag: 'Activity',   tagColor: '#8b5cf6', tagBg: '#f5f3ff', source: 'Softtop' },
-  { color: '#f59e0b', label: 'Screen pop · inbound',     tag: 'Context',    tagColor: '#f59e0b', tagBg: '#fffbeb', source: 'HubSpot' },
+  { color: '#21897e', label: 'Call ended · 3m 47s',       tag: 'AI Summary',  tagColor: '#21897e', tagBg: '#e6f5f3', source: 'Rispa' },
+  { color: '#3b82f6', label: 'Contact created → Lead',    tag: 'CRM Sync',    tagColor: '#3b82f6', tagBg: '#eff6ff', source: 'Salesforce' },
+  { color: '#8b5cf6', label: 'Follow-up SMS dispatched',  tag: 'Automation',  tagColor: '#8b5cf6', tagBg: '#f5f3ff', source: 'Rispa' },
+  { color: '#f59e0b', label: 'Appointment booked · 10AM', tag: 'Calendar',    tagColor: '#f59e0b', tagBg: '#fffbeb', source: 'Google Cal' },
 ]
 
 function AnimatedFeedRow({ item, index }) {
@@ -73,8 +73,8 @@ function Integrations() {
                     </svg>
                   </div>
                   <div>
-                    <div className="crm-app__name">Softtop</div>
-                    <div className="crm-app__status crm-app__status--green">● CONNECTED</div>
+                    <div className="crm-app__name">Rispa</div>
+                    <div className="crm-app__status crm-app__status--green">● ACTIVE</div>
                   </div>
                 </div>
 
@@ -94,7 +94,7 @@ function Integrations() {
                     </svg>
                   </div>
                   <div>
-                    <div className="crm-app__name">HubSpot</div>
+                    <div className="crm-app__name">Salesforce</div>
                     <div className="crm-app__status crm-app__status--orange">● SYNCING</div>
                   </div>
                 </div>
@@ -119,12 +119,12 @@ function Integrations() {
                   <span>Calls logged</span>
                 </div>
                 <div className="crm-stat">
-                  <strong>30s</strong>
-                  <span>To timeline</span>
+                  <strong>&lt;1s</strong>
+                  <span>Sync latency</span>
                 </div>
                 <div className="crm-stat">
                   <strong>$0</strong>
-                  <span>Extra fee</span>
+                  <span>Setup fee</span>
                 </div>
               </div>
             </div>

@@ -39,4 +39,6 @@ function Industries() {
   )
 }
 
-export default Industries
+export default Industries 
+
+
