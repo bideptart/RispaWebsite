@@ -3,6 +3,7 @@ import Badge from '../components/Badge'
 import Button from '../components/Button'
 import FeaturesHeroVisual from '../components/Features/FeaturesHeroVisual'
 import Features from '../components/Features/Features'
+import Capabilities from '../components/Features/Capabilities'
 import IntegrationsCarousel from '../components/Features/IntegrationsCarousel'
 import CTA from '../components/CTA/CTA'
 
@@ -63,7 +64,9 @@ function FeaturesPage({ onNavigate }) {
 
       <Features />
 
-      <CTA variant="features" onNavigate={onNavigate} />
+      <Capabilities />
+
+      <CTA variant="features" bannerVariant="demo" onNavigate={onNavigate} />
     </div>
   )
 }

@@ -1,77 +1,98 @@
-import { useEffect, useRef } from 'react'
-import { motion, useSpring, useTransform } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
 import Button from '../Button'
 
+const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3)
+
+const CheckIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+    <polyline points="20 6 9 17 4 12" />
+  </svg>
+)
+
 function PricingCard({ plan, billing }) {
-  const count = useSpring(plan.price, {
-    stiffness: 100,
-    damping: 30,
-    mass: 1
-  })
-  
-  const rounded = useTransform(count, (latest) => Math.round(latest))
+  const [displayPrice, setDisplayPrice] = useState(plan.price)
   const prevPriceRef = useRef(plan.price)
 
   useEffect(() => {
     const from = prevPriceRef.current
     const to = plan.price
+    if (from === to) return
+    prevPriceRef.current = to
 
-    if (from !== to) {
-      count.set(to)
-      prevPriceRef.current = to
+    const duration = 600
+    const start = performance.now()
+    let raf
+
+    const tick = (now) => {
+      const t = Math.min((now - start) / duration, 1)
+      const value = from + (to - from) * easeOutCubic(t)
+      setDisplayPrice(Math.round(value))
+      if (t < 1) raf = requestAnimationFrame(tick)
     }
-  }, [plan.price, count])
+    raf = requestAnimationFrame(tick)
+
+    return () => cancelAnimationFrame(raf)
+  }, [plan.price])
+
+  const isFeatured = plan.featured
+  const isYearly = billing === 'yearly'
 
   return (
-    <article className={`pricing-card ${plan.featured ? 'is-featured' : ''}`}>
+    <article className={`pricing-card ${isFeatured ? 'is-featured' : ''}`}>
+      {isFeatured && <span className="pricing-card__badge">{plan.tag}</span>}
+
       <div className="pricing-card__top">
-        <div className="pricing-card__heading">
-          <h3>{plan.name}</h3>
-          {plan.featured ? <span className="pricing-card__tag">Most popular</span> : null}
-        </div>
+        <h3>{plan.name}</h3>
+        {!isFeatured && <span className="pricing-card__tag">{plan.tag}</span>}
         <p className="pricing-card__description">{plan.description}</p>
       </div>
 
       <div className="pricing-card__price">
+        <span className="pricing-card__currency">$</span>
         <strong>
-          <motion.span
+          <span
             style={{
               display: 'inline-block',
               fontVariantNumeric: 'tabular-nums',
-              fontFeatureSettings: '"tnum"'
+              fontFeatureSettings: '"tnum"',
             }}
           >
-            {rounded}
-          </motion.span>
+            {displayPrice}
+          </span>
         </strong>
-        <span>
-          {plan.price === 0 ? 'custom quote' : `/ user / ${billing === 'monthly' ? 'mo' : 'mo, billed yearly'}`}
+        <span className="pricing-card__price-suffix">
+          / seat / {billing === 'monthly' ? 'month' : 'mo · billed yearly'}
         </span>
+        {isYearly && plan.saveTag && (
+          <span className="pricing-card__save">{plan.saveTag}</span>
+        )}
       </div>
 
-      <div className="pricing-card__meta">
-        <span>{plan.featured ? 'Best for scaling teams' : 'Great for getting started'}</span>
-        <span>{plan.highlights[0]}</span>
+      {/* Plan quick stats (minutes / rate / concurrency) as one compact meta line */}
+      <div className="pricing-card__meta-line">
+        <span>{plan.includedMinutes?.toLocaleString()} min</span>
+        <span className="pricing-card__meta-dot">·</span>
+        <span>{plan.voiceRate}</span>
+        <span className="pricing-card__meta-dot">·</span>
+        <span>{plan.concurrency} agent{plan.concurrency === 1 ? '' : 's'}</span>
       </div>
 
       <ul className="pricing-card__list">
         {plan.highlights.map((item) => (
-          <li key={item}>{item}</li>
+          <li key={item}>
+            <span className="pricing-card__check">
+              <CheckIcon />
+            </span>
+            {item}
+          </li>
         ))}
       </ul>
 
       <Button
         as="a"
         href="#cta"
-        variant={plan.featured ? 'primary' : 'secondary'}
-        style={{
-          width: '100%',
-          padding: '0.85rem 1.5rem',
-          borderRadius: '999px',
-          fontWeight: '700',
-          fontSize: '0.95rem',
-          transition: 'all 0.3s ease'
-        }}
+        variant={isFeatured ? 'primary' : 'secondary'}
+        className="pricing-card__cta"
       >
         {plan.cta}
       </Button>
