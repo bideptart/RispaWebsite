@@ -9,76 +9,64 @@ const useCaseCards = [
     Icon: GitBranch,
     tags: ['AI-Powered', 'Intent-Based', 'Skills-Based'],
     title: 'Smart Routing',
-    description: 'Automatically routes calls based on customer intent to the right team — without unnecessary transfers or hold time.',
+    description: 'Automatically routes calls based on customer intent to the right team without unnecessary transfers.',
     link: 'Explore Smart Routing',
-    accent: '#21897e',
-    glow: 'rgba(33,137,126,0.08)',
+    accent: '#5fd0c8',
   },
   {
     Icon: Mic,
     tags: ['Transcription', 'PII Protection', 'Search'],
     title: 'Call Recording',
-    description: 'Record, transcribe, and search every conversation with built-in PII redaction — compliance-ready out of the box.',
+    description: 'Record, transcribe, and search conversations with secure PII protection built in at every step.',
     link: 'Explore Call Recording',
-    accent: '#0284c7',
-    glow: 'rgba(2,132,199,0.08)',
+    accent: '#5fd0c8',
   },
   {
     Icon: Inbox,
     tags: ['Voice', 'SMS', 'WhatsApp'],
     title: 'Omnichannel Inbox',
-    description: 'Manage voice, SMS, and WhatsApp conversations in one shared workspace — full context on every interaction.',
-    link: 'Explore Omnichannel',
-    accent: '#d97706',
-    glow: 'rgba(217,119,6,0.08)',
+    description: 'Manage voice, SMS, WhatsApp, chat, and email conversations in one shared workspace.',
+    link: 'Explore Omnichannel Inbox',
+    accent: '#f6a734',
   },
   {
     Icon: Database,
     tags: ['HubSpot', 'Salesforce', 'Zoho'],
     title: 'CRM Integrations',
-    description: 'Connect Rispa to HubSpot, Salesforce, Zoho, Freshdesk and more — every call auto-logged, no manual entry needed.',
+    description: 'Connect with HubSpot, Salesforce, Zoho, Zendesk, Freshdesk, and more — no custom dev.',
     link: 'Explore Integrations',
-    accent: '#7c3aed',
-    glow: 'rgba(124,58,237,0.08)',
+    accent: '#a78bfa',
   },
   {
     Icon: BarChart2,
     tags: ['Real-Time', 'CSAT', 'SLA'],
     title: 'Live Analytics',
-    description: 'Monitor CSAT, SLA adherence, call volume, and agent performance with real-time dashboards and weekly reports.',
+    description: 'Monitor CSAT, SLA, call activity, and agent performance with real-time reporting.',
     link: 'Explore Live Analytics',
-    accent: '#db2777',
-    glow: 'rgba(219,39,119,0.08)',
-  },
-  {
-    Icon: Shield,
-    tags: ['SOC 2', 'GDPR', 'Encryption'],
-    title: 'Enterprise Security',
-    description: 'End-to-end encryption, role-based access, audit logs, and SOC 2 compliance — built for enterprise requirements.',
-    link: 'Explore Security',
-    accent: '#21897e',
-    glow: 'rgba(33,137,126,0.08)',
+    accent: '#f87171',
   },
 ]
 
-function UseCaseCard({ card }) {
-  const { Icon, tags, title, description, link, accent, glow } = card
+function UseCaseCard({ card, wide }) {
+  const { Icon, tags, title, description, link, accent } = card
   return (
-    <article
-      className="uc-card"
-      style={{ '--uc-accent': accent, '--uc-glow': glow }}
-    >
-      <div className="uc-card__icon">
-        <Icon size={22} strokeWidth={1.8} />
+    <article className={`uc-card-ds ${wide ? 'uc-card-ds--wide' : ''}`}>
+      {/* Ambient glow */}
+      <div className="uc-card-ds__glow" style={{ '--ds-accent': accent }} />
+
+      <div className="uc-card-ds__icon" style={{ '--ds-accent': accent }}>
+        <Icon size={20} strokeWidth={1.8} />
       </div>
-      <div className="uc-card__tags">
+
+      <div className="uc-card-ds__tags">
         {tags.map(t => (
-          <span key={t} className="uc-card__tag">{t}</span>
+          <span key={t} className="uc-card-ds__tag" style={{ '--ds-accent': accent }}>{t}</span>
         ))}
       </div>
-      <h3 className="uc-card__title">{title}</h3>
-      <p className="uc-card__desc">{description}</p>
-      <a className="uc-card__link">{link} →</a>
+
+      <h3 className="uc-card-ds__title">{title}</h3>
+      <p className="uc-card-ds__desc">{description}</p>
+      <a className="uc-card-ds__link" style={{ color: accent }}>{link} →</a>
     </article>
   )
 }
@@ -103,8 +91,16 @@ function UseCases() {
           </div>
         </div>
 
-        <div className="uc-grid">
-          {useCaseCards.map(card => (
+        {/* Top row: 2 wide cards */}
+        <div className="uc-grid-top">
+          {useCaseCards.slice(0, 2).map(card => (
+            <UseCaseCard key={card.title} card={card} wide />
+          ))}
+        </div>
+
+        {/* Bottom row: 3 cards */}
+        <div className="uc-grid-bottom">
+          {useCaseCards.slice(2).map(card => (
             <UseCaseCard key={card.title} card={card} />
           ))}
         </div>

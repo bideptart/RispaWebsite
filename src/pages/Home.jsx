@@ -1,6 +1,5 @@
 import Hero from '../components/Hero/Hero'
 import CallFlow from '../components/CallFlow/CallFlow'
-import HowItWorks from '../components/HowItWorks/HowItWorks'
 import Comparison from '../components/Comparison/Comparison'
 import ROICalculator from '../components/ROICalculator/ROICalculator'
 import Integrations from '../components/Integrations/Integrations'
@@ -13,13 +12,11 @@ function Home({ onNavigate }) {
     <>
       <Hero onNavigate={onNavigate} />
       <CallFlow />
-      <HowItWorks />
       <Comparison />
       <ROICalculator />
       <Integrations />
       <Testimonials />
       <FAQ />
-      {/* Snapshot 4 — teal full-width CTA at the very bottom */}
       <CTA onNavigate={onNavigate} variant="features" />
     </>
   )

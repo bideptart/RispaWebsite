@@ -23,15 +23,19 @@ const ICONS = {
   ),
 }
 
-function StepCard({ step, title, description, points }) {
+function StepCard({ step, title, description, points, flippable = false }) {
   const cardRef = useRef(null)
-  const [tilt, setTilt] = useState({ x: 0, y: 0 })
+  const [tilt, setTilt]     = useState({ x: 0, y: 0 })
   const [hovered, setHovered] = useState(false)
+  const [flipped, setFlipped] = useState(false)
+
+  const isActive = step === '03'
 
   const handleMouseMove = (e) => {
+    if (flippable) return          // no tilt when in flip mode
     const rect = cardRef.current.getBoundingClientRect()
-    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 14
-    const y = -((e.clientY - rect.top) / rect.height - 0.5) * 14
+    const x =  ((e.clientX - rect.left)  / rect.width  - 0.5) * 14
+    const y = -((e.clientY - rect.top)   / rect.height - 0.5) * 14
     setTilt({ x, y })
   }
 
@@ -40,51 +44,95 @@ function StepCard({ step, title, description, points }) {
     setHovered(false)
   }
 
-  const isActive = step === '03'
+  const handleClick = () => {
+    if (flippable) setFlipped(f => !f)
+  }
 
+  /* ── Non-flippable: deep-sea card with 3-D tilt ── */
+  if (!flippable) {
+    return (
+      <div
+        ref={cardRef}
+        className={`step-card-v2 ${isActive ? 'step-card-v2--active' : ''}`}
+        onMouseMove={handleMouseMove}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={handleMouseLeave}
+        style={{
+          transform: hovered
+            ? `perspective(800px) rotateX(${tilt.y}deg) rotateY(${tilt.x}deg) translateY(-6px)`
+            : 'perspective(800px) rotateX(0) rotateY(0) translateY(0)',
+          transition: hovered ? 'transform 0.1s ease' : 'transform 0.4s ease',
+        }}
+      >
+        <div className="step-card-v2__num">{step}</div>
+        <div className="step-card-v2__icon">{ICONS[step]}</div>
+        <h3 className="step-card-v2__title">{title}</h3>
+        <p className="step-card-v2__desc">{description}</p>
+        {points && (
+          <ul className="step-card-v2__points">
+            {points.map((point, i) => (
+              <li key={i}>
+                <span className="step-card-v2__check">
+                  <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="2 6 5 9 10 3"/>
+                  </svg>
+                </span>
+                {point}
+              </li>
+            ))}
+          </ul>
+        )}
+        <div className="step-card-v2__glow" />
+      </div>
+    )
+  }
+
+  /* ── Flippable: click to flip between deep-sea (front) and white (back) ── */
   return (
     <div
-      ref={cardRef}
-      className={`step-card-v2 ${isActive ? 'step-card-v2--active' : ''}`}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        transform: hovered
-          ? `perspective(800px) rotateX(${tilt.y}deg) rotateY(${tilt.x}deg) translateY(-6px)`
-          : 'perspective(800px) rotateX(0) rotateY(0) translateY(0)',
-        transition: hovered ? 'transform 0.1s ease' : 'transform 0.4s ease',
-      }}
+      className={`step-flip ${isActive ? 'step-flip--active' : ''} ${flipped ? 'step-flip--flipped' : ''}`}
+      onClick={handleClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => e.key === 'Enter' && handleClick()}
+      aria-label={`${title} — click to ${flipped ? 'collapse' : 'expand'}`}
     >
-      {/* Step number */}
-      <div className="step-card-v2__num">{step}</div>
+      <div className="step-flip__inner">
 
-      {/* Icon */}
-      <div className="step-card-v2__icon">
-        {ICONS[step]}
+        {/* Front: deep-sea dark card */}
+        <div className="step-flip__front">
+          <div className="step-card-v2__num">{step}</div>
+          <div className="step-card-v2__icon">{ICONS[step]}</div>
+          <h3 className="step-card-v2__title">{title}</h3>
+          <p className="step-card-v2__desc">{description}</p>
+          <div className="step-flip__hint">Click to expand ↗</div>
+          <div className="step-card-v2__glow" />
+        </div>
+
+        {/* Back: white card with full detail */}
+        <div className="step-flip__back">
+          <div className="step-flip__back-num">{step}</div>
+          <div className="step-flip__back-icon">{ICONS[step]}</div>
+          <h3 className="step-flip__back-title">{title}</h3>
+          <p className="step-flip__back-desc">{description}</p>
+          {points && (
+            <ul className="step-flip__back-points">
+              {points.map((point, i) => (
+                <li key={i}>
+                  <span className="step-card-v2__check">
+                    <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="2 6 5 9 10 3"/>
+                    </svg>
+                  </span>
+                  {point}
+                </li>
+              ))}
+            </ul>
+          )}
+          <div className="step-flip__hint-back">Click to close ↙</div>
+        </div>
+
       </div>
-
-      {/* Content */}
-      <h3 className="step-card-v2__title">{title}</h3>
-      <p className="step-card-v2__desc">{description}</p>
-
-      {points && (
-        <ul className="step-card-v2__points">
-          {points.map((point, i) => (
-            <li key={i}>
-              <span className="step-card-v2__check">
-                <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="2 6 5 9 10 3"/>
-                </svg>
-              </span>
-              {point}
-            </li>
-          ))}
-        </ul>
-      )}
-
-      {/* Glow on hover */}
-      <div className="step-card-v2__glow" />
     </div>
   )
 }

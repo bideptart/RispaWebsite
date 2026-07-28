@@ -29,7 +29,7 @@ const steps = [
   },
 ]
 
-function HowItWorks() {
+function HowItWorks({ flippable = false }) {
   return (
     <section className="section" id="how-it-works">
       <SectionTitle
@@ -39,7 +39,7 @@ function HowItWorks() {
       />
       <Container className="steps-grid">
         {steps.map((item) => (
-          <StepCard key={item.step} {...item} />
+          <StepCard key={item.step} {...item} flippable={flippable} />
         ))}
       </Container>
     </section>
