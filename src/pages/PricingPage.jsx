@@ -72,7 +72,7 @@ function PricingPage({ onNavigate }) {
 
       <FAQ />
 
-      <CTA onNavigate={onNavigate} />
+      <CTA onNavigate={onNavigate} variant="features" />
     </div>
   )
 }

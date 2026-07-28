@@ -80,7 +80,7 @@ function BlogPage({ onNavigate }) {
         </Container>
       </section>
 
-      <CTA onNavigate={onNavigate} />
+      <CTA onNavigate={onNavigate} variant="features" />
     </div>
   )
 }
