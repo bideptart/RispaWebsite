@@ -1,16 +1,11 @@
 import { useMemo, useState } from 'react'
-import { pricingPlans } from '../../data/pricing'
+import { pricingPlans, pricingCompareRows } from '../../data/pricing'
 import Container from '../Container'
-import SectionTitle from '../SectionTitle'
 import PricingCard from './PricingCard'
 import PricingToggle from './PricingToggle'
 
-const compareRows = [
-  { label: 'Best for', values: ['Solo launch', 'Growing teams', 'High-volume teams'] },
-  { label: 'Included minutes', values: ['250 min', '800 min', '3,000 min'] },
-  { label: 'Agent capacity', values: ['Up to 3', 'Up to 10', 'Unlimited'] },
-  { label: 'Support', values: ['Email support', 'Priority support', 'Dedicated manager'] },
-]
+const compareColumns = ['Starter', 'Growth', 'Scale']
+const compareFeatured = 'Growth'
 
 function Pricing() {
   const [billing, setBilling] = useState('monthly')
@@ -18,43 +13,27 @@ function Pricing() {
 
   return (
     <section className="section section--tight" id="pricing">
-      <SectionTitle
-        eyebrow="Pricing"
-        title="Simple pricing that scales with your team."
-        description="Choose a plan that fits your current footprint and expand as your usage grows."
-        align="center"
-      />
       <Container className="pricing-shell">
         <div className="pricing-shell__panel">
-          <div className="pricing-shell__header">
+          <PricingToggle billing={billing} onChange={setBilling} />
+
+          <div className="pricing-shell__note">
+            <span className="pricing-shell__note-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+            </span>
             <span className="pricing-shell__eyebrow">Flexible billing</span>
             <p className="pricing-shell__copy">
               Keep the same soft contrast and refined finish as the rest of the site while presenting the pricing in a more structured, container-led layout.
             </p>
           </div>
 
-          <PricingToggle billing={billing} onChange={setBilling} />
-
           <div className="pricing-grid">
             {plans.map((plan) => (
-              <PricingCard key={`${billing}-${plan.name}`} plan={plan} billing={billing} />
+              <PricingCard key={plan.name} plan={plan} billing={billing} />
             ))}
-          </div>
-
-          <div className="pricing-compare">
-            <div className="pricing-compare__header">Compare the options</div>
-            <div className="pricing-compare__body">
-              {compareRows.map((row) => (
-                <div key={row.label} className="pricing-compare__row">
-                  <span>{row.label}</span>
-                  <div className="pricing-compare__values">
-                    {row.values.map((value) => (
-                      <span key={value}>{value}</span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </Container>
@@ -62,4 +41,49 @@ function Pricing() {
   )
 }
 
+function PricingCompare() {
+  return (
+    <section className="section section--tight" id="pricing-compare">
+      <Container>
+        <div className="pricing-compare-table">
+          <div className="pricing-compare-table__row pricing-compare-table__row--head">
+            <div className="pricing-compare-table__cell pricing-compare-table__cell--label">Feature</div>
+            {compareColumns.map((col) => (
+              <div
+                key={col}
+                className={`pricing-compare-table__cell${col === compareFeatured ? ' pricing-compare-table__cell--featured' : ''}`}
+              >
+                <span className="pricing-compare-table__col-name">{col}</span>
+                {col === compareFeatured && (
+                  <span className="pricing-compare-table__badge">Most popular</span>
+                )}
+              </div>
+            ))}
+          </div>
+          {pricingCompareRows.map((row) => (
+            <div key={row.label} className="pricing-compare-table__row">
+              <div className="pricing-compare-table__cell pricing-compare-table__cell--label">{row.label}</div>
+              {row.values.map((value, i) => (
+                <div
+                  key={compareColumns[i]}
+                  className={`pricing-compare-table__cell${compareColumns[i] === compareFeatured ? ' pricing-compare-table__cell--featured' : ''}`}
+                >
+                  {value === '✓' ? (
+                    <span className="pricing-compare-table__check">✓</span>
+                  ) : value === '—' ? (
+                    <span className="pricing-compare-table__dash">—</span>
+                  ) : (
+                    value
+                  )}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </Container>
+    </section>
+  )
+}
+
 export default Pricing
+export { PricingCompare }

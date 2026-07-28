@@ -14,6 +14,7 @@ function PricingToggle({ billing, onChange }) {
         onClick={() => onChange('yearly')}
       >
         Yearly
+        <span className="pricing-toggle__save">Save 20%</span>
       </button>
     </div>
   )
