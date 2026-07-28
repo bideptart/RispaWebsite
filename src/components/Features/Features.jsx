@@ -35,14 +35,43 @@ function Features() {
     <section className="section features-testimonials-section" id="features">
       <Container>
         <SectionTitle
-          eyebrow="THE HUMAN-KIND EXPERIENCE"
+          eyebrow={
+            <>
+              <span className="ft-live-dot" aria-hidden="true" />
+              THE HUMAN-KIND EXPERIENCE
+            </>
+          }
           title={
             <>
               Conversations indistinguishable from{' '}
               <span className="highlighted-text">your best agent.</span>
             </>
           }
-          description="Rispa.ai skips the brittle speech-to-text and text-to-speech relay and runs on a single audio-native engine — so your callers hear pauses, emotion, and timing that feel right."
+          right={
+            <motion.div
+              className="ft-header-panel"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div className="ft-header-panel__wave" aria-hidden="true">
+                {[6, 14, 22, 12, 18, 8, 16].map((h, i) => (
+                  <motion.span
+                    key={i}
+                    style={{ height: h }}
+                    animate={{ scaleY: [1, 1.9, 0.7, 1.4, 1] }}
+                    transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut', delay: i * 0.09 }}
+                  />
+                ))}
+              </div>
+              <p className="ft-header-panel__desc">
+                Rispa.ai skips the brittle speech-to-text and text-to-speech relay and runs on a single
+                audio-native engine — so your callers hear pauses, emotion, and timing that feel right.
+              </p>
+              <span className="ft-header-panel__stat">&lt;300ms round-trip latency</span>
+            </motion.div>
+          }
         />
 
         <div className="features-testimonials">

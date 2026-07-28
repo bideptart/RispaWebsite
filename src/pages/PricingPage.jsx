@@ -1,7 +1,7 @@
 import Container from '../components/Container'
 import Badge from '../components/Badge'
+import SectionTitle from '../components/SectionTitle'
 import Pricing, { PricingCompare } from '../components/Pricing/Pricing'
-import FAQ from '../components/FAQ/FAQ'
 import CTA from '../components/CTA/CTA'
 import { motion } from 'framer-motion'
 
@@ -16,17 +16,17 @@ const billingSteps = [
   {
     num: '/01',
     title: 'Prepaid wallet billing',
-    desc: "Load credit upfront and your balance draws down per second as calls come in. Top up anytime from $20.",
+    desc: 'Buy credit up front and your balance draws down per second as calls come in. Top up anytime from $20.',
   },
   {
     num: '/02',
-    title: 'Per-second billing',
-    desc: "Never rounded up to the minute — billed to the second at your plan's effective rate, as low as $0.10/min on Scale.",
+    title: 'Per-second overage',
+    desc: "Go past your included minutes and you're billed per second at your plan's effective rate — as low as $0.10/min on Scale.",
   },
   {
     num: '/03',
     title: 'No setup fees',
-    desc: 'Your number and agent go live in under 10 minutes — no separate setup fee, no hidden costs.',
+    desc: 'Your number and agent are assigned automatically at signup — no separate setup fee, no hidden costs.',
   },
 ]
 
@@ -79,6 +79,11 @@ function PricingPage({ onNavigate }) {
       <section className="section section--tight">
         <Container>
           <div className="pricing-billing-panel">
+            <SectionTitle
+              eyebrow="How billing works"
+              title="Predictable billing for your practice."
+              align="center"
+            />
             <div className="pricing-billing-grid">
               {billingSteps.map((step, i) => (
                 <motion.div
@@ -105,9 +110,7 @@ function PricingPage({ onNavigate }) {
 
       <PricingCompare />
 
-      <FAQ />
-
-      <CTA onNavigate={onNavigate} variant="features" />
+      <CTA onNavigate={onNavigate} variant="features" showExplore bannerVariant="receptionist" />
     </div>
   )
 }

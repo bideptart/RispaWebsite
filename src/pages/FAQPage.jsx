@@ -1,6 +1,7 @@
 import Container from '../components/Container'
 import Badge from '../components/Badge'
 import Button from '../components/Button'
+import ReviewsCarousel from '../components/Testimonials/ReviewsCarousel'
 import FAQ from '../components/FAQ/FAQ'
 import CTA from '../components/CTA/CTA'
 
@@ -29,6 +30,8 @@ function FAQPage({ onNavigate }) {
           </div>
         </Container>
       </section>
+
+      <ReviewsCarousel />
 
       <FAQ />
 
