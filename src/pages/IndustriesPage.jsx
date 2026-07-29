@@ -4,7 +4,7 @@ import Button from '../components/Button'
 import LiveBoard from '../components/Industries/LiveBoard'
 import DayTimeline from '../components/Industries/DayTimeline'
 import UseCases from '../components/UseCases/UseCases'
-import CallDemo from '../components/Industries/CallDemo'
+import LiveCallDemo from '../components/LiveCallDemo/LiveCallDemo'
 import CTA from '../components/CTA/CTA'
 import '../components/Industries/day-timeline.css'
 
@@ -12,7 +12,6 @@ function IndustriesPage({ onNavigate }) {
   return (
     <div className="page-view industries-page">
 
-      {/* Hero — copy left, Rispa comms mockup right */}
       <section className="industries-hero-section">
         <Container className="industries-hero-container">
           <div className="industries-hero__copy">
@@ -49,7 +48,8 @@ function IndustriesPage({ onNavigate }) {
 
       <DayTimeline />
 
-      <CallDemo/ >
+      <LiveCallDemo />
+
       <CTA onNavigate={onNavigate} variant="features" />
     </div>
   )
